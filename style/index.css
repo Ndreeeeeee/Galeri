@@ -1,0 +1,215 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'poppins';
+}
+body{
+    background: #f8f8f8;
+}
+:root{
+    --back-clr: #000000bb;
+    --blck-clr:#000000;
+    --ligh-clr:#8282ff48;
+    --blue-clr:#5a29e0;
+    --hov-clr:#6c36ffaf;
+    --wht-clr:#fff;
+}
+
+.wrap{
+    border: 0px solid;
+    margin: 0px auto;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.wrap1{
+    border: 0px solid;
+    width: 50%;
+    max-width: 50%;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+img{
+    transform: translate(0vh, -100px);
+    height: 155vh;
+    filter: brightness(0.7);
+}
+.box{
+  position: absolute;
+  border: 0px solid;
+  width: 400px;
+  height: 75vh;
+  background: linear-gradient(#ffffff25,var(--hov-clr),var(--blue-clr));
+  background-size: 10% 100%;
+  transform: translate(140px, 80px);
+  box-shadow: -22px 22px 30px rgba(0, 0, 0, 0.781);
+  transition: 0.9s;
+  z-index: 2;
+}
+.box:hover{
+  background-size: 10% 800%;
+  box-shadow: -2px 2px 30px rgba(0, 0, 0, 0.781);
+}
+.inbox{
+  border: 0px solid;
+  width: 350px;
+  margin: 270px auto;
+}
+.inbox p{
+  font-weight: 300;
+  font-size: 1.2rem;
+  color: #fff;
+}
+.inbox p:nth-of-type(2){
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: #fff;
+  margin: 30px 0px 40px 0px;
+}
+.inbox h2{
+  color: #fff;
+  font-size: 2rem;
+  margin: -10px auto;
+}
+a{
+  border: 1px solid #fff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.3rem;
+  padding: 8px 133.5px;
+  border-radius: 5px;
+  margin: 0vh 0vh;
+  text-decoration: none;
+}
+
+
+.wrap2{
+    border: 0px solid;
+    width: 50%;
+    height: 100%;
+}
+.in{
+    border: 0px solid;
+    height: 80%;
+    width: 60%;
+    margin: 10vh auto;
+}
+h1{
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+p{
+  color: var(--back-clr);
+}
+form{
+  margin-top: 40px;
+}
+.int{
+    position: relative;
+    transform: translate(0px auto);
+    margin: 0px 0px 30px 0px;
+    }
+    label{
+      position: absolute;
+      color: var(--back-clr);
+      font-size: 1.2rem;
+      top: 14px;
+      left: 13px;
+      pointer-events: none;
+      transition: 0.3s ease-in;
+    }
+    
+    #inp:focus + label, #inp:not(:placeholder-shown) + label{
+      transform: translate(-10px,-40px) scale(0.9);
+      font-weight: 600;
+      color: var(--blue-clr);
+    }
+    #inp:not(:placeholder-shown){
+      outline:1px solid var(--blue-clr);
+      border: 2px solid var(--blue-clr);
+      background: var(--wht-clr);
+    }
+    
+    #txt, #text{
+      transition: 0.3s ease-in;
+    }
+    #inp{
+      width: 100%;
+      border-radius: 5px;
+      margin: 3px auto;
+      border-bottom: 2px solid var(--back-clr);
+      font-size: 1.2rem;
+      color: var(--text-clr);
+      padding: 9px;
+      border: 2px solid var(--back-clr);
+      transition: 0.3s ease-in;
+    }
+    #inp:focus{
+      outline:1px solid var(--blue-clr);
+      border: 2px solid var(--blue-clr);
+      background: var(--wht-clr);
+    }
+    #inp:-webkit-autofill{
+      -webkit-box-shadow: 0 0 0px 100px var(--ligh-clr) inset;
+      -webkit-text-fill-color: var(--blck-clr);
+    }
+    #btn{
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 10px;
+        width: 105%;
+        color: #ffff;
+        background: var(--blue-clr);
+        cursor: pointer;
+        border-radius: 6px;
+        border: 2px solid var(--blue-clr);
+        transition: .5s ease-out;
+      }
+      #btn:hover{
+      background: var(--blue-clr);
+      color: var(--blck-clr);
+      border: 2px solid var(--blck-clr);
+      }
+      #btn:active{
+      transform: scale(0.9);
+      }
+      
+      .atau{
+        border: 0px solid;
+        width: 105%;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .atau p{
+        margin: 10px 5px 20px 5px;
+      }
+      .line{
+        border: 1px solid rgba(0, 0, 0, 0.432);
+        margin: 10px 5px 20px 5px;
+        width: 300px;
+      }
+
+      #btnn{
+        font-size: 1.1rem;
+        font-weight: 600;
+        padding: 10px 195px;
+        color: #000000;
+        cursor: pointer;
+        border-radius: 6px;
+        border: 2px solid var(--back-clr);
+        transition: .5s ease-out;
+      }
+      #btnn:hover{
+      background: var(--blue-clr);
+      color: var(--blck-clr);
+      border: 2px solid var(--blck-clr);
+      }
+      #btnn:active{
+      transform: scale(0.9);
+      }
+    
