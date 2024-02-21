@@ -17,7 +17,7 @@ Website ini merpakan website untuk memposting foto atau gif dan kamu juga bisa m
    ```
    https://github.com/Ndreeeeeee/Galeri.git
    ```
-2. Pastikan xampp atau client server sudah terdownload dan kunjungi http/localhostphphttp://localhost/phpmyadmin/ untuk xampp, bagi yang lainnya menyesuaikan.
+2. Pastikan xampp atau client server sudah terdownload dan kunjungi https:/localhostphphttp://localhost/phpmyadmin/ untuk xampp, bagi yang lainnya menyesuaikan.
    Jika ingin mendowload xampp https://www.apachefriends.org/download.html.
 3. Buat database "galeri", lalu Import database galeri.sql ke database yang sudah dibuat
 4. Buka index.php pada folder perpustakaan, maka website siap dijalankan
