@@ -24,5 +24,4 @@ Website ini merpakan website untuk memposting foto atau gif dan kamu juga bisa m
 
 ## Teknologi yang Digunakan
 
-- [React.js](https://reactjs.org/)
 - [jQuery.js](https://jquery.com/)
