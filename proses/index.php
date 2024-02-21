@@ -12,24 +12,22 @@
       
         $row = $rowselect['role'];
         $id_user = $rowselect['id_user'];
-        $fullnamee = $rowselect['fullname'];
+        $fullname = $rowselect['fullname'];
         $alamat = $rowselect['alamat'];
         $ftopro = $rowselect['ftopro'];
       
         if ($row == "admin") {  
           session_start();
           $_SESSION['username'] = $username;
-          $_SESSION = $id_user;
-          $_SESSION = $fullnamee;
-          $_SESSION = $alamat;
+          $_SESSION['id_user'] = $id_user;
           $_SESSION['role'] = 'admin';
-          echo "<script>document.location='../admin_page/home.php';</script>";
+          echo "<script>document.location='../admin_page/file_view/home.php';</script>";
         } elseif ($row == "user") {
           session_start();
           $_SESSION['username'] = $username;
           $_SESSION['id_user'] = $id_user;
           $_SESSION['role'] = 'user';
-          echo "<script>alert('Login Berhasil'); document.location='../user_page/file_view/home.php';</script>";
+          echo "<script>document.location='../user_page/file_view/home.php';</script>";
         } else {
           echo "<script>alert('Username & Password Salah !'); document.location='../index.php';</script>";
         }

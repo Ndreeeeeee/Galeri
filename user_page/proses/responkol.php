@@ -8,13 +8,24 @@
         $query = "SELECT * FROM album WHERE id_user = $id_user";
         $hasilbum = mysqli_query($koneksi, $query); 
 
+        $query = "SELECT *
+        FROM album_foto
+        INNER JOIN foto ON album_foto.id_foto = foto.id_foto
+        ORDER BY album_foto.id DESC";
+        $mut = mysqli_query($koneksi, $query);
+
         foreach($hasilbum as $album) :
         $id_album = $album["id_album"];
-        $id_foto = $_GET["id_foto"];
     ?>   
         <div class="kol">
         <div class="ftokol">
-            <img src="../foto/makiam.jpg" alt="">
+            <?php 
+            foreach($mut as $row):
+                if($row["id_album"] == $id_album){
+            ?>
+            <img src="<?php echo $row["fto"] ?>" alt="">
+            <?php } ?>
+            <?php endforeach ?>
         </div>
         <div class="jus">
             <p><?php echo $album["namealbum"] ?></p>

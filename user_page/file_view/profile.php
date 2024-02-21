@@ -17,10 +17,15 @@ $username = $_SESSION['username'];
     <link rel="stylesheet" href="../style/check.css?v= <?php echo time(); ?>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
     <title>Profile</title>
 </head>
 <body id="ok">
     <div class="box_mrk" id="mrk"></div>
+
+    <div class="pop" id="pop">
+        
+    </div>
 
     <div class="edpro" id="pro" style="">
         <div class="wrap_koll">
@@ -166,7 +171,7 @@ $username = $_SESSION['username'];
             <p><?php echo $row["email"] ?></p>
             <div class="jml">
                 <div class="jl">
-                <?php echo $ruw["total_foto"] -1 ?> Postingan 
+                <?php echo $ruw["total_foto"] ?> Postingan 
                 </div>
                 <div class="jl">
                 <?php echo $rcw["total"] ?> Tersimpan
@@ -201,14 +206,27 @@ $username = $_SESSION['username'];
             
             <?php 
             include '../proses/readfto.php';
-            if ($hasil) {$rew = mysqli_fetch_assoc($hasil);}
             while($row = mysqli_fetch_assoc($hasil)){
                 $id_foto = $row["id_foto"]; 
             if ($row["id_user"] == $_SESSION["id_user"]){
+                $status = mysqli_query($koneksi, "SELECT status FROM likee WHERE id_foto = $id_foto AND id_user = $id_user");
+                if(mysqli_num_rows($status) > 0){
+                    $status = mysqli_fetch_assoc($status)['status'];
+                }
+                else{
+                    $status = 0;
+                }
             ?>
             
             <div class="box">
                 <img src="<?php echo $row["fto"] ?>" alt="">
+                <div class="pic" data-foto-id = "<?php echo $id_foto ?>"  data-user-id = "<?php echo $_SESSION["id_user"] ?>"></div>
+                <div class="ghst">
+                <div class="asos">
+                    <div class="save" id="sev" data-album-id = "<?php echo $id_album ?>" data-foto-id = "<?php echo $id_foto ?>"  data-user-id = "<?php echo $_SESSION["id_user"] ?>"><ion-icon name="bookmark-outline"></ion-icon></div>
+                    <i class="fa like fa-regular fa-heart <?php if($status == 'like') echo "fu" ; ?>" data-foto-id = <?php echo $id_foto ?>></i>
+                </div>
+            </div>
                 <div class="roy">
                     <input type="checkbox" data-foto-id="<?php echo $id_foto ?>" id="<?php echo $row["id_foto"] ?>" class="checkbox">
                     <label  for="<?php echo $row["id_foto"] ?>" ></label>
@@ -225,12 +243,24 @@ $username = $_SESSION['username'];
         <?php 
             include '../proses/readalbum.php';
             while($cur = mysqli_fetch_assoc($curse)){
+                $id_album = $cur["id_album"]
         ?>
-        <a href="koleksi.php?id_album<?php echo $cur["id_album"] ?>">
+        <a href="koleksi.php?id_album=<?php echo $cur["id_album"] ?>">
         <div class="wrap_boxx">
         <div class="boxx">
-           
-            <div class="tra"><img src="" alt=""></div>  
+           <?php 
+            $count = 0;
+            foreach($scr as $row):
+                if($row["id_album"] == $id_album && $count < 3){
+           ?>
+            <div class="tra"><img src="<?php echo $row["fto"] ?>" alt=""></div>  
+            <?php
+             $count++; 
+                }
+            ?>
+            <?php 
+            endforeach
+            ?>
             
         </div>
         <div class="tit"><?php echo $cur["namealbum"] ?></div>
@@ -242,7 +272,42 @@ $username = $_SESSION['username'];
 </body>
 
 <script>
-
+    $('.like').click(function(){
+            var data = {
+                id_foto: $(this).data('foto-id'),
+                id_user: <?php echo $id_user; ?>,
+                status: $(this).hasClass('like') ? 'like' : 'dislike',
+            };
+            $.ajax({
+                url: '../proses/like.php',
+                type: 'post',
+                data: data,
+                success:function(response){
+                    var id_foto = data['id_foto'];
+                    var likeButton = $(".like[data-foto-id=" + id_foto + "]");
+                    if(response == 'newlike'){
+                        likeButton.addClass('fu')
+                    }
+                    else if(response == "changetolike"){
+                        likeButton.addClass('selected');
+                        likeButton.addClass('fu');
+                    }
+                    else if(response == 'deletelike'){
+                        likeButton.removeClass('selected');
+                        likeButton.removeClass('fu');
+                    } 
+                }
+            })
+        })
+    
+        window.addEventListener('scroll', function() {
+        var nav = document.getElementById('navbar');
+        if (window.scrollY > 0) {
+            nav.classList.add('shadow');
+        } else {
+            nav.classList.remove('shadow');
+        }
+    });
 </script>
 
 <script src="../action/profile.js?v= <?php echo time(); ?>"></script>

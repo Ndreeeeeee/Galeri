@@ -6,6 +6,10 @@
 
 if ($_SESSION['username']) {
 $username = $_SESSION['username'];
+include '../proses/readuser.php';
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+}
 
 ?>
 <!DOCTYPE html>
@@ -22,7 +26,25 @@ $username = $_SESSION['username'];
  
 </style>
 <body>
-    <div class="nav">
+<div class="box_mrk" id="mrk"></div>
+    <div class="mark" id="sv">
+        <div class="wrap_koll">
+            <div class="cls" id="clss">
+                <span>X</span>
+            </div>
+            <div class="upper">
+                Tambahkan Kekoleksi saya <span><ion-icon name="bookmark-outline"></ion-icon></span>
+            </div>
+        </div>
+        <div class="box_add" id="ox">
+        </div>
+    </div>
+
+    <div class="pop" id="pop">
+        
+    </div>
+
+    <div class="nav" id="navbar">
         <div class="logo">
             <ion-icon name="logo-bitbucket"></ion-icon>
         </div>
@@ -36,8 +58,9 @@ $username = $_SESSION['username'];
             <label for="src"><ion-icon name="search"></ion-icon></label>
             <input type="text" name="" id="src" placeholder="Cari...." onkeypress="handleKeyPress(event)">
         </div>
+        
         <a href="profile.php" class="prf">
-            <!-- <ion-icon name="person"></ion-icon> -->
+            <img src="<?php echo $row["ftopro"]?>" alt="">
         </a>
         <a href="../proses/logout.php" class="brn nah">
             Log Out <span><ion-icon name="log-out-outline"></ion-icon></span>
@@ -50,40 +73,103 @@ $username = $_SESSION['username'];
     $searchText = $_GET['search'];
     $fotos = mysqli_query($koneksi, "SELECT * FROM foto WHERE jdlfto LIKE '%$searchText%' OR deskfto LIKE '%$searchText%'");
     foreach($fotos as $foto) :
-        $id_foto = $foto["id_foto"];
-        include '../proses/readuser.php';
-        if ($result) {
-            $row = mysqli_fetch_assoc($result);
-        }
-        $id_user = $row["id_user"];
+    include '../proses/readuser.php';
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+    }
+    $id_user = $row["id_user"];
+    $id_foto = $foto["id_foto"];
 
-        $likesCount = mysqli_fetch_assoc(mysqli_query($koneksi,
-        "SELECT COUNT(*) AS likes FROM likee WHERE id_foto = $id_foto AND status = 'like'"))['likes'];
-        $dislikesCount = mysqli_fetch_assoc(mysqli_query($koneksi,
-        "SELECT COUNT(*) AS dislikes FROM likee WHERE id_foto = $id_foto AND status = 'dislike'"))['dislikes'];
-
-        $status = mysqli_query($koneksi, "SELECT status FROM likee WHERE id_foto = $id_foto AND id_user = $id_user");
-        if(mysqli_num_rows($status) > 0){
-            $status = mysqli_fetch_assoc($status)['status'];
-        }
-        else{
-            $status = 0;
-        }
+    
+    $status = mysqli_query($koneksi, "SELECT status FROM likee WHERE id_foto = $id_foto AND id_user = $id_user");
+    if(mysqli_num_rows($status) > 0){
+        $status = mysqli_fetch_assoc($status)['status'];
+    }
+    else{
+        $status = 0;
+    }
     ?>
-            <div class="box">
-                <img src="<?php echo $foto["fto"] ?>" alt="">
-                <div class="ghst">
-                    <div class="asos">
-                        <div class="save"><ion-icon name="bookmark-outline"></ion-icon></div>
-                        <i class="fa like fa-regular fa-heart <?php if($status == 'like') echo "fu" ; ?>" data-foto-id = <?php echo $id_foto ?>></i>
-                    </div>
+        <div class="box">
+            <img src="<?php echo $foto["fto"] ?>" alt="">
+            <div class="pic" data-foto-id = "<?php echo $id_foto ?>"  data-user-id = "<?php echo $_SESSION["id_user"] ?>"></div>
+            <div class="ghst">
+                <div class="asos">
+                    <div class="save" id="sev" data-album-id = "<?php echo $id_album ?>" data-foto-id = "<?php echo $id_foto ?>"  data-user-id = "<?php echo $_SESSION["id_user"] ?>"><ion-icon name="bookmark-outline"></ion-icon></div>
+                    <i class="fa like fa-regular fa-heart <?php if($status == 'like') echo "fu" ; ?>" data-foto-id = <?php echo $id_foto ?>></i>
                 </div>
             </div>
+        </div>
             
     <?php endforeach ?>
     </div>
 </body>
 <script type="text/javascript">
+        $(document).ready(function(){
+    $('.save').click(function(){
+            var id_foto = $(this).data('foto-id');
+            var id_user = $(this).data('user-id');
+            var id_album = $(this).data('album-id');
+            
+            $.ajax({
+                type: 'GET',
+                url: '../proses/responkol.php',
+                data: {
+                    id_foto: id_foto,
+                    id_user: id_user,
+                    id_album: id_album
+                },
+                success: function(response) {
+                    $('#ox').html(response);
+                    $('#mrk').css('transform', 'translateY(-85px)');
+                    $('#sv').css('transform', 'translateY(-75px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function(){
+    $('.pic').click(function(){
+            var id_foto = $(this).data('foto-id');
+            var id_user = $(this).data('user-id');
+            
+            $.ajax({
+                type: 'GET',
+                url: '../proses/responview.php',
+                data: {
+                    id_foto: id_foto,
+                    id_user: id_user
+                },
+                success: function(response) {
+                    $('#pop').html(response);
+                    $('#mrk').css('transform', 'translateY(-85px)');
+                    $('#pop').css('transform', 'translateY(-75px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    
+    $(document).ready(function(){
+    $('.cls').click(function(){
+            $.ajax({
+                success: function(response) {
+                    $('#mrk').css('transform', 'translateY(-800px)');
+                    $('#sv').css('transform', 'translateY(-755px)');
+                    $('#pop').css('transform', 'translateY(-755px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
     $('.like, .dislike').click(function(){
         var data = {
             id_foto: $(this).data('foto-id'),

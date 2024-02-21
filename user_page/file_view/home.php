@@ -58,7 +58,6 @@ if ($result) {
         
         <a href="profile.php" class="prf">
             <img src="<?php echo $row["ftopro"]?>" alt="">
-            <?php }?>
         </a>
         <a href="../proses/logout.php" class="brn nah">
             Log Out <span><ion-icon name="log-out-outline"></ion-icon></span>
@@ -66,46 +65,39 @@ if ($result) {
     </div>
     
     <div class="container">
-    <?php 
-    require '../config/config.php';
+        <?php 
+        require '../config/config.php';
 
-    $fotos = mysqli_query($koneksi, 'SELECT * FROM foto');
-    foreach($fotos as $foto) :
-        include '../proses/readuser.php';
-        if ($result) {
-            $row = mysqli_fetch_assoc($result);
-        }
-        $id_user = $row["id_user"];
-        $id_foto = $foto["id_foto"];
+        $fotos = mysqli_query($koneksi, 'SELECT * FROM foto');
+        foreach($fotos as $foto) :
+            include '../proses/readuser.php';
+            if ($result) {
+                $row = mysqli_fetch_assoc($result);
+            }
+            $id_user = $row["id_user"];
+            $id_foto = $foto["id_foto"];
 
-        $opinion = mysqli_query($koneksi, "SELECT album_foto.id_album FROM album_foto JOIN foto ON album_foto.id_foto = foto.id_foto;");
-        if(mysqli_num_rows($opinion) > 0){
-            $id_album = mysqli_fetch_assoc($opinion);
-        }
-        else{
-            $id_album = 0;
-        }
-        
-        $status = mysqli_query($koneksi, "SELECT status FROM likee WHERE id_foto = $id_foto AND id_user = $id_user");
-        if(mysqli_num_rows($status) > 0){
-            $status = mysqli_fetch_assoc($status)['status'];
-        }
-        else{
-            $status = 0;
-        }
-    ?>
-            <div class="box">
-                <img src="<?php echo $foto["fto"] ?>" alt="">
-                <div class="pic" data-foto-id = "<?php echo $id_foto ?>"  data-user-id = "<?php echo $_SESSION["id_user"] ?>"></div>
-                <div class="ghst">
-                    <div class="asos">
-                        <div class="save" id="sev" data-album-id = "<?php echo $id_album ?>" data-foto-id = "<?php echo $id_foto ?>"  data-user-id = "<?php echo $_SESSION["id_user"] ?>"><ion-icon name="bookmark-outline"></ion-icon></div>
-                        <i class="fa like fa-regular fa-heart <?php if($status == 'like') echo "fu" ; ?>" data-foto-id = <?php echo $id_foto ?>></i>
+            
+            $status = mysqli_query($koneksi, "SELECT status FROM likee WHERE id_foto = $id_foto AND id_user = $id_user");
+            if(mysqli_num_rows($status) > 0){
+                $status = mysqli_fetch_assoc($status)['status'];
+            }
+            else{
+                $status = 0;
+            }
+        ?>
+                <div class="box">
+                    <img src="<?php echo $foto["fto"] ?>" alt="">
+                    <div class="pic" data-foto-id = "<?php echo $id_foto ?>"  data-user-id = "<?php echo $_SESSION["id_user"] ?>"></div>
+                    <div class="ghst">
+                        <div class="asos">
+                            <div class="save" id="sev" data-album-id = "<?php echo $id_album ?>" data-foto-id = "<?php echo $id_foto ?>"  data-user-id = "<?php echo $_SESSION["id_user"] ?>"><ion-icon name="bookmark-outline"></ion-icon></div>
+                            <i class="fa like fa-regular fa-heart <?php if($status == 'like') echo "fu" ; ?>" data-foto-id = <?php echo $id_foto ?>></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-    <?php endforeach ?>
+                
+        <?php endforeach ?>
     </div>
 </body>
 <script src="../action/home.js"></script>
@@ -160,24 +152,6 @@ if ($result) {
         });
     });
 
-    $(document).ready(function(){
-    $('.pic').click(function(){
-        var id_foto = $(this).data('foto-id');
-        var id_user = $(this).data('user-id');
-        
-        $.ajax({
-            
-            success: function(response) {
-        
-                $('#mrk').css('transform', 'translateY(-85px)');
-                $('#pop').css('transform', 'translateY(-75px)');
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
-    });
-});
     
     $(document).ready(function(){
     $('.cls').click(function(){
@@ -226,4 +200,4 @@ if ($result) {
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </html>
-
+<?php } ?>

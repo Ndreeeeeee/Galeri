@@ -46,7 +46,7 @@
                     <p><?php echo $use["fullname"] ?></p>
                 </div>
             </div>
-            <div class="lik"><i class="fa like fa-regular fa-heart <?php if($status == 'like') echo "fu" ; ?>" data-foto-id = <?php echo $id_foto ?> ></i><p>124</p></div>      
+            <div class="lik"><i class="fa like fa-regular fa-heart <?php if($status == 'like') echo "fu" ; ?>" data-foto-id = <?php echo $id_foto ?> ></i><p></p></div>      
         </div>
         <div class="showkom">
             <?php

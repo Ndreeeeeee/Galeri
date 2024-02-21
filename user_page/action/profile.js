@@ -208,6 +208,95 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function(){
+    // Ketika elemen dengan ID "ho" diklik
+    $('#oh').click(function(){
+        // Loop melalui semua elemen dengan kelas "roy"
+        $('.roy').each(function(){
+            // Mengubah properti tampilan menjadi block
+            $(this).css('display', 'none');
+        });
+    });
+});
+
+$(document).ready(function(){
+    // Ketika elemen dengan ID "ho" diklik
+    $('#ho').click(function(){
+        // Loop melalui semua elemen dengan kelas "roy"
+        $('.roy').each(function(){
+            // Mengubah properti tampilan menjadi block
+            $(this).css('display', 'block');
+        });
+    });
+});
 
 
 
+$(document).ready(function(){
+    $('.save').click(function(){
+            var id_foto = $(this).data('foto-id');
+            var id_user = $(this).data('user-id');
+            var id_album = $(this).data('album-id');
+            
+            $.ajax({
+                type: 'GET',
+                url: '../proses/responkol.php',
+                data: {
+                    id_foto: id_foto,
+                    id_user: id_user,
+                    id_album: id_album
+                },
+                success: function(response) {
+                    $('#ox').html(response);
+                    $('#mrk').css('transform', 'translateY(-70px)');
+                    $('#sv').css('transform', 'translateY(-60px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function(){
+    $('.pic').click(function(){
+            var id_foto = $(this).data('foto-id');
+            var id_user = $(this).data('user-id');
+            
+            $.ajax({
+                type: 'GET',
+                url: '../proses/responview.php',
+                data: {
+                    id_foto: id_foto,
+                    id_user: id_user
+                },
+                success: function(response) {
+                    $('#pop').html(response);
+                    $('#mrk').css('transform', 'translateY(-70px)');
+                    $('#pop').css('transform', 'translateY(-75px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function(){
+        $('.cls').click(function(){
+                $.ajax({
+                    success: function(response) {
+                        $('#mrk').css('transform', 'translateY(-800px)');
+                        $('#sv').css('transform', 'translateY(-755px)');
+                        $('#pop').css('transform', 'translateY(-755px)');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+        
+    
+    
+        

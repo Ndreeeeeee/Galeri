@@ -6,6 +6,10 @@
 
 if ($_SESSION['username']) {
 $username = $_SESSION['username'];
+include '../proses/readuser.php';
+if ($result) {
+    $row = mysqli_fetch_assoc($result);
+}
 
 ?>
 
@@ -33,7 +37,7 @@ $username = $_SESSION['username'];
             <input type="text" name="" id="src" placeholder="Cari....">
         </div>
         <a href="profile.php" class="prf">
-            <ion-icon name="person"></ion-icon>
+            <img src="<?php echo $row["ftopro"]?>" alt="">
         </a>
         <a href="" class="brn nah">
             Log Out <span><ion-icon name="log-out-outline"></ion-icon></span>
