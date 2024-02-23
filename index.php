@@ -22,7 +22,7 @@
         <div class="wrap2">
                 <div class="in">
                     <h1>Login</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+                    <p>Jika kamu sudah memiliki akun silahkan login, dengan isi form dibawah ini.</p>
                
 
             <form action="proses/index.php" method="POST">
@@ -45,7 +45,7 @@
                     <div class="line"></div>
                 </div>
 
-                <a href="" id="btnn">Skip</a>
+                <a href="guest/file_view/home.php" id="btnn">Skip</a>
             </form>
         </div>
     </div>

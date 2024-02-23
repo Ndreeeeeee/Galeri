@@ -23,7 +23,7 @@
         <div class="wrap2">
                 <div class="in">
                     <h1>Signup</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. </p>
+                    <p>Jika kamu belum memiliki akun silahkan daftar, dengan isi form dibawah ini.</p>
                
 
             <form action="proses/signup.php" method="POST"  class="frm">
@@ -57,7 +57,7 @@
                     </div>
                     
                     <div class="int">
-                    <input type="text" id="inp" name="pas" placeholder=" ">
+                    <input type="password" id="inp" name="pas" placeholder=" ">
                     <label for="">Password :</label>
                     </div>
 

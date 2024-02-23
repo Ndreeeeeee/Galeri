@@ -24,7 +24,7 @@
 
         if ($passwordpast === $passwordasli) {
         
-            $query = "UPDATE user SET password = '$password' WHERE id_user = $id_user";
+            $query = "UPDATE user SET password = '$password', email = '$email'  WHERE id_user = $id_user";
             if ($conn->query($query) === TRUE) {
                 header("Location: ../file_view/profile.php");
             } else {
