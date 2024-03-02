@@ -1,14 +1,5 @@
 <?php
-     $host = "localhost";
-     $username = "root";
-     $password = "";
-     $database = "galeri";
- 
-     $conn = new mysqli($host, $username, $password, $database);
-     if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-     }
-    // (Kode koneksi ke database - seperti yang diberikan sebelumnya)
+    include '../config/config.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $namealbum = $_POST["namealbum"];
@@ -19,11 +10,11 @@
 
         $sql = "INSERT INTO album ( namealbum, desk, tgl_albm, id_user) VALUES ( '$namealbum', '$desk', '$tgl_albm', '$id_user')";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($koneksi->query($sql) === TRUE) {
             header("Location: ../file_view/profile.php");
         } else {
-            echo "Error adding room: " . $conn->error;
+            echo "Error adding room: " . $koneksi->error;
         }
     }
 
-    $conn->close();
+    $koneksi->close();

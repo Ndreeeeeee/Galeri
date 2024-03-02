@@ -231,32 +231,69 @@ $(document).ready(function(){
 });
 
 
+        
+window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (window.scrollY > 0) {
+        nav.classList.add('shadow');
+    } else {
+        nav.classList.remove('shadow');
+    }
+});
+
+$(document).ready(function() {
+    $('#pul').on('click', function(e) {
+        e.preventDefault(); // Menghentikan aksi bawaan submit form
+        
+        // Array untuk menyimpan data foto yang akan dihapus
+        var foto_ids = [];
+
+        // Mendapatkan foto_ids dari checkbox yang diceklis
+        $('.checkbox:checked').each(function() {
+            var foto_id = $(this).data('foto-id');
+            foto_ids.push(foto_id);
+        });
+
+        console.log("fotoIds:", foto_ids); // Tambahkan ini untuk memeriksa apakah nilai foto_ids sudah benar
+        
+        // Jika lebih dari satu checkbox terceklis, sembunyikan elemen dengan id 'pul'
+        if (foto_ids.length > 1) {
+            $('#pul').hide();
+        } else {
+            // Jika hanya satu atau tidak ada checkbox terceklis, tampilkan kembali elemen dengan id 'pul'
+            $('#pul').show();
+            
+            // Lakukan navigasi ke edit.php jika foto_ids sudah ditentukan
+            if (foto_ids.length === 1) {
+                window.location.href = "edit.php?foto_id=" + foto_ids[0];
+            }
+        }
+    });
+});
 
 $(document).ready(function(){
-    $('.save').click(function(){
-            var id_foto = $(this).data('foto-id');
-            var id_user = $(this).data('user-id');
-            var id_album = $(this).data('album-id');
-            
-            $.ajax({
-                type: 'GET',
-                url: '../proses/responkol.php',
-                data: {
-                    id_foto: id_foto,
-                    id_user: id_user,
-                    id_album: id_album
-                },
-                success: function(response) {
-                    $('#ox').html(response);
-                    $('#mrk').css('transform', 'translateY(-70px)');
-                    $('#sv').css('transform', 'translateY(-60px)');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
+    // Ketika elemen dengan ID "ho" diklik
+    $('#oh').click(function(){
+        // Loop melalui semua elemen dengan kelas "roy"
+        $('.roy').each(function(){
+            // Mengubah properti tampilan menjadi block
+            $(this).css('display', 'none');
         });
     });
+});
+
+$(document).ready(function(){
+    // Ketika elemen dengan ID "ho" diklik
+    $('#ho').click(function(){
+        // Loop melalui semua elemen dengan kelas "roy"
+        $('.roy').each(function(){
+            // Mengubah properti tampilan menjadi block
+            $(this).css('display', 'block');
+        });
+    });
+});
+
+
 
     $(document).ready(function(){
     $('.pic').click(function(){
@@ -296,7 +333,6 @@ $(document).ready(function(){
                 });
             });
         });
-        
     
     
         

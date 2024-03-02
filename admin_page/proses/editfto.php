@@ -1,13 +1,5 @@
 <?php
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "galeri";
-
-$conn = new mysqli($host, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include '../config/config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_foto = $_POST["id_foto"];
@@ -21,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Periksa apakah ada file yang diunggah
     if (!empty($_FILES["fto"]["name"])) {
         // Mengunggah foto baru
-        $targetDir = "../foto/";
+        $targetDir = "../../foto/";
         $targetFile = $targetDir . basename($_FILES["fto"]["name"]);
         move_uploaded_file($_FILES["fto"]["tmp_name"], $targetFile);
 
@@ -31,12 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "UPDATE foto SET jdlfto = '$jdlfto', tglup = '$tglup', deskfto = '$deskfto', likefto = '$likefto' WHERE id_foto = $id_foto";
     }
 
-    if ($conn->query($sql) === TRUE) {
+    if ($koneksi->query($sql) === TRUE) {
         header("Location: ../file_view/home.php?success=true");
     } else {
-        echo "Error updating photo: " . $conn->error;
+        echo "Error updating photo: " . $koneksi->error;
     }
 }
 
-$conn->close();
+$koneksi->close();
 ?>

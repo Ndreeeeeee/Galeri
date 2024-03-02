@@ -1,14 +1,5 @@
 <?php
-
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "galeri";
-
-$conn = new mysqli($host, $username, $password, $database);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include '../config/config.php';
 
 // Ambil data yang diterima dari permintaan AJAX
 $id_foto = $_POST['id_foto'];
@@ -17,7 +8,7 @@ $status = "tersimpan";
 
 // Periksa apakah data sudah ada dalam tabel album_foto
 $sql_check = "SELECT id_foto FROM album_foto WHERE id_foto = '$id_foto' AND id_album = '$id_album'";
-$result_check = $conn->query($sql_check);
+$result_check = $koneksi->query($sql_check);
 
 if ($result_check->num_rows > 0) {
     // Jika data sudah ada, beri respons bahwa data sudah ada
@@ -27,14 +18,14 @@ if ($result_check->num_rows > 0) {
 
     $sql = "INSERT INTO album_foto (id_foto, id_album, status) VALUES ('$id_foto', '$id_album', '$status')";
 
-    if ($conn->query($sql) === TRUE) {
+    if ($koneksi->query($sql) === TRUE) {
         echo "Data berhasil disimpan";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $sql . "<br>" . $koneksi->error;
     }
 }
 
-$conn->close();
+$koneksi->close();
 ?>
 
 

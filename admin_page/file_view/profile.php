@@ -303,15 +303,6 @@ $username = $_SESSION['username'];
                 }
             })
         })
-    
-        window.addEventListener('scroll', function() {
-        var nav = document.getElementById('navbar');
-        if (window.scrollY > 0) {
-            nav.classList.add('shadow');
-        } else {
-            nav.classList.remove('shadow');
-        }
-    });
 </script>
 
 <script src="../action/profile.js?v= <?php echo time(); ?>"></script>

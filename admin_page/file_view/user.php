@@ -91,7 +91,7 @@ if ($result) {
         
         <div class="add">
             <div class="ico">
-                <img src="../foto/icongweh.png" alt="">
+                <img src="../../source/svg/icongweh.png" alt="">
             </div>
             <div class="txt">
                  <p>Disini kamu bisa melihat Akun-akun yang sudah terdaftar diwebsite IMGSource terdapat :</p>
@@ -103,27 +103,7 @@ if ($result) {
 </body>
 <script>
 
-$(document).ready(function(){
-    $('.fus').click(function(){
-            var id_user = $(this).data('user-id');
-            
-            $.ajax({
-                type: 'GET',
-                url: '../proses/responuser.php',
-                data: {
-                    id_user: id_user
-                },
-                success: function(response) {
-                    $('#pro').html(response);
-                    $('#mrk').css('transform', 'translateY(-80px)');
-                    $('#pro').css('transform', 'translateY(-80px)');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
+
 
 
 </script>

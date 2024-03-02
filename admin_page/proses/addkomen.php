@@ -1,14 +1,5 @@
 <?php
-     $host = "localhost";
-     $username = "root";
-     $password = "";
-     $database = "galeri";
- 
-     $conn = new mysqli($host, $username, $password, $database);
-     if ($conn->connect_error) {
-         die("Connection failed: " . $conn->connect_error);
-     }
-    // (Kode koneksi ke database - seperti yang diberikan sebelumnya)
+     include '../config/config.php';
     session_start();
 
     $komentar = $_POST["komentar"];
@@ -18,7 +9,7 @@
     
     $sql = "INSERT INTO komentar (komentar, id_foto, tgl_komen, id_user) VALUES ('$komentar', '$id_foto', '$tgl_komen', '$id_user')";
 
-    if ($conn->query($sql) === TRUE) {
+    if ($koneksi->query($sql) === TRUE) {
         $response = array(
             'status' => 'success',
             'message' => 'Data berhasil disimpan'
@@ -27,10 +18,10 @@
     } else {
         $response = array(
             'status' => 'error',
-            'message' => 'Error: ' . $sql . "<br>" . $conn->error
+            'message' => 'Error: ' . $sql . "<br>" . $koneksi->error
         );
         echo json_encode($response);
     }
     
-    $conn->close();
+    $koneksi->close();
     

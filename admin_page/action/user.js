@@ -22,3 +22,25 @@ function confirmDelete(userId) {
         return false;
     }
 }
+
+$(document).ready(function(){
+    $('.fus').click(function(){
+            var id_user = $(this).data('user-id');
+            
+            $.ajax({
+                type: 'GET',
+                url: '../proses/responuser.php',
+                data: {
+                    id_user: id_user
+                },
+                success: function(response) {
+                    $('#pro').html(response);
+                    $('#mrk').css('transform', 'translateY(-80px)');
+                    $('#pro').css('transform', 'translateY(-80px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });

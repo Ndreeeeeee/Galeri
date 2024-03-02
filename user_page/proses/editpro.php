@@ -1,13 +1,5 @@
 <?php
-    $host = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "galeri";
-
-    $conn = new mysqli($host, $username, $password, $database);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    include '../config/config.php';
     
     $id_user = $_GET["id_user"];
     
@@ -18,7 +10,7 @@
         $alamat = $_POST["alamat"];
 
         // Define the target directory for uploaded files
-        $targetDir = "../foto/";
+        $targetDir = "../../foto/";
         
         // Check if a file was uploaded
         if (isset($_FILES["ftopro"]) && $_FILES["ftopro"]["error"] === 0) {
@@ -31,10 +23,10 @@
                 
                 $sql = "UPDATE user SET username = '$username', fullname = '$fullname', alamat = '$alamat', ftopro = '$targetFile' WHERE id_user = $id_user";
                 
-                if ($conn->query($sql) === TRUE) {
+                if ($koneksi->query($sql) === TRUE) {
                     header("Location: ../file_view/profile.php");
                 } else {
-                    echo "Error updating user: " . $conn->error;
+                    echo "Error updating user: " . $koneksi->error;
                 }
             } else {
                 echo "Error uploading file.";
@@ -43,10 +35,10 @@
             // Proceed with updating the database without uploading a new file
             $sql = "UPDATE user SET username = '$username', fullname = '$fullname', alamat = '$alamat' WHERE id_user = $id_user";
                 
-            if ($conn->query($sql) === TRUE) {
+            if ($koneksi->query($sql) === TRUE) {
                 header("Location: ../file_view/profile.php");
             } else {
-                echo "Error updating user: " . $conn->error;
+                echo "Error updating user: " . $koneksi->error;
             }
         }
     } else {
@@ -55,7 +47,7 @@
 
             
 
-    $conn->close();
+    $koneksi->close();
     
 
 ?>

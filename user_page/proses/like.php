@@ -12,10 +12,6 @@ if(mysqli_num_rows($likees) > 0){
         mysqli_query($koneksi, "DELETE FROM likee WHERE id_foto = $id_foto AND id_user = $id_user");
         echo "delete" . $status;
     }
-    else{
-        mysqli_query($koneksi, "UPDATE likee SET status = '$status' WHERE id_foto = $id_foto AND id_user = $id_user");
-        echo "changeto" . $status;
-    } 
 }
 else{
     mysqli_query($koneksi, "INSERT INTO likee (id_foto, id_user, status) VALUES ('$id_foto', '$id_user', '$status')");

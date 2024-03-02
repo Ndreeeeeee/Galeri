@@ -145,6 +145,15 @@ reader.onload = function(e) {
 };
 }
 
+window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (window.scrollY > 0) {
+        nav.classList.add('shadow');
+    } else {
+        nav.classList.remove('shadow');
+    }
+});
+
 $(document).ready(function() {
     $('#sub').on('click', function(e) {
         e.preventDefault(); // Menghentikan aksi bawaan submit form
@@ -231,32 +240,6 @@ $(document).ready(function(){
 });
 
 
-
-$(document).ready(function(){
-    $('.save').click(function(){
-            var id_foto = $(this).data('foto-id');
-            var id_user = $(this).data('user-id');
-            var id_album = $(this).data('album-id');
-            
-            $.ajax({
-                type: 'GET',
-                url: '../proses/responkol.php',
-                data: {
-                    id_foto: id_foto,
-                    id_user: id_user,
-                    id_album: id_album
-                },
-                success: function(response) {
-                    $('#ox').html(response);
-                    $('#mrk').css('transform', 'translateY(-70px)');
-                    $('#sv').css('transform', 'translateY(-60px)');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
 
     $(document).ready(function(){
     $('.pic').click(function(){

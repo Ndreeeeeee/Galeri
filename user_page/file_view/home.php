@@ -118,7 +118,7 @@ if ($result) {
                 },
                 success: function(response) {
                     $('#ox').html(response);
-                    $('#mrk').css('transform', 'translateY(-85px)');
+                    $('#mrk').fadeIn();
                     $('#sv').css('transform', 'translateY(-75px)');
                 },
                 error: function(xhr, status, error) {
@@ -129,6 +129,7 @@ if ($result) {
     });
 
     $(document).ready(function(){
+    $('#mrk').hide()
     $('.pic').click(function(){
             var id_foto = $(this).data('foto-id');
             var id_user = $(this).data('user-id');
@@ -142,7 +143,7 @@ if ($result) {
                 },
                 success: function(response) {
                     $('#pop').html(response);
-                    $('#mrk').css('transform', 'translateY(-85px)');
+                    $('#mrk').fadeIn();
                     $('#pop').css('transform', 'translateY(-75px)');
                 },
                 error: function(xhr, status, error) {
@@ -157,7 +158,7 @@ if ($result) {
     $('.cls').click(function(){
             $.ajax({
                 success: function(response) {
-                    $('#mrk').css('transform', 'translateY(-800px)');
+                    $('#mrk').fadeOut();
                     $('#sv').css('transform', 'translateY(-755px)');
                     $('#pop').css('transform', 'translateY(-755px)');
                 },
@@ -196,6 +197,8 @@ if ($result) {
             }
         })
     })
+
+
 </script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

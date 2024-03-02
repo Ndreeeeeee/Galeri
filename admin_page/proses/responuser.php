@@ -20,7 +20,7 @@
         }
         ?>
         <div class="ol" id="ol" style="">
-            <form action="../proses/editpro.php?id_user=<?php echo $row["id_user"]?>" method="POST" enctype="multipart/form-data">
+            <form action="../proses/editpro_min.php?id_user=<?php echo $row["id_user"]?>" method="POST" enctype="multipart/form-data">
                 <div class="ftopro">
                     <input style="display: none;" class="img-inp" id="img-input" type="file" name="ftopro" onchange="showImage()">
                     <img class="img-com" src="<?php echo $row["ftopro"]?>" alt="">
@@ -110,8 +110,6 @@ boxcls.addEventListener("click", function(){
     boxmrk.style.transform="translateY(-800px)";
     pro.style.transform="translateY(-800px)";
 });
-
-
 
 
 const imageUploader = document.querySelector(".img-inp");
