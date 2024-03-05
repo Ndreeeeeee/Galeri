@@ -4,7 +4,7 @@
 
     $komentar = $_POST["komentar"];
     $id_foto = $_POST["id_foto"];
-    $tgl_komen = date("d-m-Y");
+    $tgl_komen = date('l, j F Y');
     $id_user = $_SESSION["id_user"];
     
     $sql = "INSERT INTO komentar (komentar, id_foto, tgl_komen, id_user) VALUES ('$komentar', '$id_foto', '$tgl_komen', '$id_user')";

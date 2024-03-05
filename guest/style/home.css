@@ -17,7 +17,8 @@ body{
 }
 
 .box_mrk{
-    transform: translateY(-820px);
+    transform: translateY(-80px);
+    display: none;
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -217,7 +218,13 @@ body{
     overflow-y: scroll;
     width: 100%;
     height: 100%;
-    padding: 5px 5px;
+    padding: 0px 5px 0px 0px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.wrp_img:hover .title{
+    opacity: 0;
 }
 .wrp_img::-webkit-scrollbar{
     background: rgba(0, 0, 0, 0);
@@ -231,6 +238,56 @@ body{
     min-width: 100%;
     max-width: 100%;
     border-radius: 10px;
+}
+.wrp_img .title{
+    position: absolute;
+    border: 0px solid;
+    background: #fff;
+    opacity: 0.9;
+    width: 430px;
+    height: fit-content;
+    top: 14.5%;
+    border-radius: 10px 0px 0px 0px;
+    box-shadow: 1px 2px 3px #00000035;
+    transition: 0.2s linear;
+    padding: 10px;
+}
+.wrp_img .title:hover{
+    opacity: 1;
+}
+.title .jdl{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.title .soko{
+    position: absolute;
+    cursor: pointer;
+    transform: translate(390px, -30px);
+}
+.title .siu{
+    position: absolute;
+    cursor: pointer;
+    display: none;
+    border: 1px solid;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    background: #fff;
+    border-radius: 3px;
+    transform: translate(270px, -35px);
+}
+.title .desk{
+    margin-bottom: 25px;
+}
+.title .sup{
+    transform: translate(230px, -15px);
+}
+.loy{
+    position: absolute;
+    font-size: 0.7rem;
+    z-index: 1;
+    width: fit-content;
+    transform: translate(150px, -15px);
 }
 .poptx{
     border: 0px solid;
@@ -257,7 +314,6 @@ body{
     display: flex;
     align-items: center;
     gap: 10px;
-
 }
 .bypos .ftopos{
     border: 2px solid var(--blue-clr);
@@ -359,17 +415,43 @@ body{
 }
 .kom{
     border: 0px solid;
+    position: relative;
     width:80%;
     padding: 0px 15px;
 }
+
 .kom p:nth-of-type(1){
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 5px;
+    border: 0px solid;
+    width: 290px;
+}
+.kom .sono{
+    position: absolute;
+    transform: translate(310px, -30px);
+    cursor: pointer;
+}
+.kom .si{
+    border: 1px solid;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    background: #fff;
+    border-radius: 3px;
+    transform: translate(210px, -30px);
+    position: absolute;
+    cursor: pointer;
+    display: none;
+    z-index: 2;
+}
+.kom .si:hover{
+    background: #eeee;
 }
 .kom p:nth-of-type(2){
     font-weight: 400;
     font-size: 0.9rem;
+    margin-bottom: 15px;
 }
 .senko{
     border: 0px solid;

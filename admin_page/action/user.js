@@ -35,7 +35,7 @@ $(document).ready(function(){
                 },
                 success: function(response) {
                     $('#pro').html(response);
-                    $('#mrk').css('transform', 'translateY(-80px)');
+                    $('#mrk').fadeIn();
                     $('#pro').css('transform', 'translateY(-80px)');
                 },
                 error: function(xhr, status, error) {
@@ -44,3 +44,23 @@ $(document).ready(function(){
             });
         });
     });
+
+
+     const input = document.getElementById('doom');
+     const conten = document.querySelector('.conten');
+
+     input.addEventListener('input', function() {
+         const searchQuery = input.value.toLowerCase();
+
+         const bars = document.querySelectorAll('.bar');
+
+         bars.forEach(bar => {
+             const text = bar.innerText.toLowerCase();
+
+             if (text.includes(searchQuery)) {
+                 bar.classList.remove('hide');
+             } else {
+                 bar.classList.add('hide');
+             }
+         });
+     });

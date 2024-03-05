@@ -43,7 +43,7 @@ $username = $_SESSION['username'];
         <p>Edit Postingan Mu</p><span><ion-icon name="create-outline"></ion-icon></span>
     </div>
     <?php 
-    $id_foto = $_GET["foto_id"];
+    $id_foto = $_GET["id_foto"];
     $query = "SELECT * FROM foto WHERE id_foto = $id_foto";
     $edit = mysqli_query($koneksi, $query);
     while($row = mysqli_fetch_assoc($edit)){
@@ -65,8 +65,7 @@ $username = $_SESSION['username'];
                     <p>Deskripsi :</p>
                     <div class="tf"><textarea class="inp" name="deskfto" id="" cols="0" rows="0" placeholder="Deskripsi Gambar..."><?php echo $row["deskfto"] ?></textarea></div>
                 </div>
-                <input style="display: none;" type="text" name="tglup" value="<?php date_default_timezone_set('Asia/Jakarta'); echo date("d F Y");?>">
-                <input style="display: none;" type="text" name="likefto" value="0">
+                <input style="display: none;" type="text" name="tglup" value="<?php date_default_timezone_set('Asia/Jakarta'); echo date("l, j F Y");?>">
                 <input type="text" style="display: none;" name="id_user" value="<?php echo $row["id_user"] ?>">
         
                 <div class="bun">

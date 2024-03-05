@@ -1,4 +1,5 @@
-<?php
+<?php 
+    session_start(); 
     include '../config/config.php';
     $id_user = $_GET['id_user'];
     $id_foto = $_GET['id_foto'];
@@ -9,29 +10,33 @@
     WHERE foto.id_foto = $id_foto";
     $user = mysqli_query($koneksi, $query);
     $use = mysqli_fetch_assoc($user);
-    
+?>
+<?php
+
     $query = "SELECT * FROM foto WHERE id_foto = $id_foto";
     $hasilbum = mysqli_query($koneksi, $query);
-
+   
+    $query = "SELECT COUNT(id_like) AS tal FROM likee WHERE id_foto = $id_foto";
+    $cotfto = mysqli_query($koneksi, $query);
+    if($il =  mysqli_fetch_assoc($cotfto)){
+        $tur = $il["tal"];
+    } else {
+        $tur = 0;
+    }
+    
     foreach($hasilbum as $foto) :
     $id_foto = $_GET["id_foto"];
-
-    $status = mysqli_query($koneksi, "SELECT status FROM likee WHERE id_foto = $id_foto AND id_user = $id_user");
-    if(mysqli_num_rows($status) > 0){
-        $status = mysqli_fetch_assoc($status)['status'];
-    }
-    else{
-        $status = 0;
-    }
 ?>  
 
-<div class="cls" id="clss">
-    <span>X</span>
-</div>
 <div class="view">
     <div class="popfto">
         <div class="wrp_img">
             <img src="<?php echo $foto["fto"] ?>" alt="">
+            <div class="title">
+                <div class="jdl"><?php echo $foto["jdlfto"] ?></div>
+                <div class="desk"><?php echo $foto["deskfto"] ?></div>
+                <div class="loy sup"><i>Posted : <?php echo $foto["tglup"] ?></i></div>
+            </div>
         </div>
     </div>
     <div class="poptx">
@@ -45,7 +50,8 @@
                     <p><?php echo $use["fullname"] ?></p>
                 </div>
             </div>
-            <div class="lik"><i class="fa like fa-regular fa-heart"></i><p></p></div>      
+            <div class="lik"><i class="fa like fa-regular fa-heart" ></i>
+            <p class="likes_cont<?php echo $id_foto;?>" data-count = <?php echo $tur; ?>><?php echo $tur; ?></p></div>      
         </div>
         <div class="showkom">
             <?php
@@ -53,14 +59,22 @@
             while($shw = mysqli_fetch_assoc($kom)){
                 if($det = mysqli_fetch_assoc($wish));
                 if($shw["id_foto"] == $_GET["id_foto"]){
+                    $id_komen = $shw["id_komen"];
             ?>
-            <div class="komen">
+            <div class="komen" data-komen-id = "<?php echo $id_komen ?>" >
                 <div class="kofto">
                     <img id="fto" src="<?php echo $det["ftopro"] ?>" alt="">
                 </div>
                 <div class="kom">
                     <p id="username"><?php echo $det["username"] ?></p>
+                    <?php 
+                    if($shw["id_user"] == $_GET["id_user"]){
+                    ?>
+                    <span class="sono"><ion-icon name="ellipsis-horizontal-outline"></ion-icon></span>
+                    <div class="si" data-komen-id = "<?php echo $id_komen ?>">Hapus Komentar!</div>
+                    <?php } ?>
                     <p id="komentar"><?php echo $shw["komentar"] ?></p>
+                    <i class="loy">Posted : <?php echo $shw["tgl_komen"] ?></i>
                 </div>
             </div>
             <?php
@@ -68,40 +82,12 @@
             }
             ?>
         </div>
-        <div class="senko">
-            <input type="text" class="send" name="komentar" placeholder="Komentar...">
-            <input type="submit" id="go" style="display:none;">
-            <label class="btngo" for="go" class="btngo"><ion-icon name="paper-plane-outline"></ion-icon></label>
-        </div>
     </div>
 </div>
- <!-- <div class="komen">
-        <div class="kofto">
-            <img id="fto" src="" alt="">
-        </div>
-        <div class="kom">
-            <p id="username"></p>
-            <p id="komentar"></p>
-        </div>
-    </div> -->
+
 <?php endforeach ?>
 
 <script>
-    $(document).ready(function(){
-    $('.cls').click(function(){
-            $.ajax({
-                success: function(response) {
-                    $('#mrk').css('transform', 'translateY(-800px)');
-                    $('#sv').css('transform', 'translateY(-755px)');
-                    $('#pop').css('transform', 'translateY(-755px)');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-
 
 
 

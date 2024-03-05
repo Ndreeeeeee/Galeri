@@ -18,7 +18,6 @@ if ($result) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style/user.css?v= <?php echo time(); ?>">
-    <link rel="stylesheet" href="../style/check.css?v= <?php echo time(); ?>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/fe459689b4.js"></script>
@@ -48,6 +47,9 @@ if ($result) {
         <a href="user.php" class="brn">
             Pengguna
         </a>
+        <a href="report.php" class="brn">
+            Laporan
+        </a>
         <a href="profile.php" class="prf">
             <img src="<?php echo $row["ftopro"]?>" alt="">
         </a>
@@ -74,8 +76,10 @@ if ($result) {
                     </div>
                     <div class="emu">
                         <p><?php echo $row["username"] ?></p>
+                        <div class="lock">
                         <p><?php echo $row["fullname"] ?></p>
                         <p><?php echo $row["email"] ?></p>
+                        </div>
                         <div <?php if($row["role"] == "admin") echo "style='background:#ff00002a; color:red;'" ?> class="lvl"><?php echo $row["role"] ?></div>
                         <div class="but">
                             <div class="fus as" data-user-id="<?php echo $row["id_user"] ?>"><ion-icon name="create-outline"></ion-icon></div>
@@ -89,14 +93,20 @@ if ($result) {
             </div>
         </div>
         
-        <div class="add">
-            <div class="ico">
-                <img src="../../source/svg/icongweh.png" alt="">
+        <div class="weh">
+            <div class="sec">
+                <span><ion-icon name="search"></ion-icon></span>
+                <input type="text" id="doom" placeholder="Cari Akun...">
             </div>
-            <div class="txt">
-                 <p>Disini kamu bisa melihat Akun-akun yang sudah terdaftar diwebsite IMGSource terdapat :</p>
-                 <h2><?php echo $ruw["total"] ?></h2>
-                 <h3>Akun Terdaftar</h3>
+            <div class="add">
+                <div class="ico">
+                    <img src="../../source/svg/icongweh.png" alt="">
+                </div>
+                <div class="txt">
+                    <p>Disini kamu bisa melihat Akun-akun yang sudah terdaftar diwebsite IMGSource terdapat :</p>
+                    <h2><?php echo $ruw["total"] ?></h2>
+                    <h3>Akun Terdaftar</h3>
+                </div>
             </div>
         </div>
     </div>

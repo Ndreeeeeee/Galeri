@@ -62,6 +62,9 @@ if ($result) {
         <a href="user.php" class="brn">
             Pengguna
         </a>
+        <a href="report.php" class="brn">
+            Laporan
+        </a>
         <a href="profile.php" class="prf">
             <img src="<?php echo $row["ftopro"]?>" alt="">
         </a>
@@ -119,8 +122,8 @@ if ($result) {
                     id_album: id_album
                 },
                 success: function(response) {
-                    $('#ox').html(response);
-                    $('#mrk').css('transform', 'translateY(-85px)');
+                    $('#oto').html(response);
+                    $('#mrk').fadeIn();
                     $('#sv').css('transform', 'translateY(-75px)');
                 },
                 error: function(xhr, status, error) {
@@ -131,6 +134,7 @@ if ($result) {
     });
 
     $(document).ready(function(){
+    $('#mrk').hide()
     $('.pic').click(function(){
             var id_foto = $(this).data('foto-id');
             var id_user = $(this).data('user-id');
@@ -144,7 +148,7 @@ if ($result) {
                 },
                 success: function(response) {
                     $('#pop').html(response);
-                    $('#mrk').css('transform', 'translateY(-85px)');
+                    $('#mrk').fadeIn();
                     $('#pop').css('transform', 'translateY(-75px)');
                 },
                 error: function(xhr, status, error) {
@@ -155,26 +159,11 @@ if ($result) {
     });
 
     
-    $(document).ready(function(){
-    $('.cls').click(function(){
-            $.ajax({
-                success: function(response) {
-                    $('#mrk').css('transform', 'translateY(-800px)');
-                    $('#sv').css('transform', 'translateY(-755px)');
-                    $('#pop').css('transform', 'translateY(-755px)');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-
-    $('.like, .dislike').click(function(){
+    $(document).on('click', '.like', function(){
         var data = {
             id_foto: $(this).data('foto-id'),
             id_user: <?php echo $id_user; ?>,
-            status: $(this).hasClass('like') ? 'like' : 'dislike',
+            status: $(this).hasClass('like') ? 'like' : 0,
         };
         $.ajax({
             url: '../proses/like.php',
@@ -182,51 +171,41 @@ if ($result) {
             data: data,
             success:function(response){
                 var id_foto = data['id_foto'];
-                var likes = $('.likes_count' + id_foto);
+                var likes = $('.likes_cont' + id_foto);
                 var likesCount = likes.data('count');
-                var dislikes = $('.dislikes_count' + id_foto);
-                var dislikesCount = dislikes.data('count');
-
                 var likeButton = $(".like[data-foto-id=" + id_foto + "]");
-                var dislikeButton = $(".dislike[data-foto-id=" + id_foto + "]");
                 if(response == 'newlike'){
-                    likes.html(likesCount + 1);
-                    likeButton.addClass('fu')
-                }
-                else if(response == "newdislike"){
-                    dislikes.html(dislikesCount + 1);
-        
-                    dislikeButton.addClass('fu')
-                }
-                else if(response == "changetolike"){
-                    likes.html(parseInt($('.likes_count' + id_foto).text()) + 1);
-                    dislikes.html(parseInt($('.dislikes_count' + id_foto).text()) - 1);
-                    likeButton.addClass('selected');
+                    likes.html(parseInt($('.likes_cont' + id_foto).text()) + 1);
                     likeButton.addClass('fu');
-                    dislikeButton.removeClass('selected');
-                    dislikeButton.removeClass('fu');
-                }
-                else if(response == "changetodislike"){
-                    likes.html(parseInt($('.likes_count' + id_foto).text()) - 1);
-                    dislikes.html(parseInt($('.dislikes_count' + id_foto).text()) + 1);
-                    likeButton.removeClass('selected');
-                    likeButton.removeClass('fu');
-                    dislikeButton.addClass('selected');
-                    dislikeButton.addClass('fu');
                 }
                 else if(response == 'deletelike'){
-                    likes.html(parseInt($('.likes_count' + id_foto).text()) - 1);
+                    likes.html(parseInt($('.likes_cont' + id_foto).text()) - 1);
                     likeButton.removeClass('selected');
                     likeButton.removeClass('fu');
-                } 
-                else if(response == 'deletedislike'){
-                    dislikes.html(parseInt($('.dislikes_count' + id_foto).text()) - 1);
-                    dislikeButton.removeClass('selected');
-                    dislikeButton.removeClass('fu');
                 } 
             }
         })
     })
+
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.view, .repo, #oto').length) {
+            $('#mrk').fadeOut();
+            $('#sv').css('transform', 'translateY(-755px)');
+            $('#pop').css('transform', 'translateY(-755px)');
+        }
+    });
+
+
+    $(document).on('click', '.soko', function() {
+        $.ajax({
+            success: function(response) {
+                $('.siu').css('display', 'block');;
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
 </script>
 <script src="../action/home.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

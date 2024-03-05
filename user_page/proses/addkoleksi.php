@@ -29,6 +29,3 @@ $koneksi->close();
 ?>
 
 
-<!-- // Tentukan nilai default untuk id_album jika tidak disediakan
-$id_album = isset($_POST['id_album']) ? $_POST['id_album'] : 0; */ -->
-

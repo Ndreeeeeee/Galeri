@@ -26,7 +26,7 @@ if ($result) {
 <div class="box_mrk" id="mrk"></div>
     <div class="mark" id="sv">
         <div class="wrap_koll">
-            <div class="cls" id="clss">
+            <div class="" id="clss">
                 <span>X</span>
             </div>
             <div class="upper">
@@ -136,7 +136,7 @@ if ($result) {
                 },
                 success: function(response) {
                     $('#ox').html(response);
-                    $('#mrk').css('transform', 'translateY(-70px)');
+                    $('#mrk').fadeIn();
                     $('#sv').css('transform', 'translateY(-60px)');
                 },
                 error: function(xhr, status, error) {
@@ -160,7 +160,7 @@ if ($result) {
                 },
                 success: function(response) {
                     $('#pop').html(response);
-                    $('#mrk').css('transform', 'translateY(-70px)');
+                    $('#mrk').fadeIn();
                     $('#pop').css('transform', 'translateY(-75px)');
                 },
                 error: function(xhr, status, error) {
@@ -182,7 +182,7 @@ if ($result) {
                 },
                 success: function(response) {
                     $('#wrapl').html(response);
-                    $('#mrk').css('transform', 'translateY(-70px)');
+                    $('#mrk').fadeIn();
                     $('#wrapl').css('transform', 'translateY(-75px)');
                 },
                 error: function(xhr, status, error) {
@@ -191,30 +191,13 @@ if ($result) {
             });
         });
     });
-
-    
-    $(document).ready(function(){
-    $('.cls').click(function(){
-            $.ajax({
-                success: function(response) {
-                    $('#mrk').css('transform', 'translateY(-800px)');
-                    $('#sv').css('transform', 'translateY(-755px)');
-                    $('#pop').css('transform', 'translateY(-755px)');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
     
 
-
-    $('.like').click(function(){
+    $(document).on('click', '.like', function(){
         var data = {
             id_foto: $(this).data('foto-id'),
             id_user: <?php echo $id_user; ?>,
-            status: $(this).hasClass('like') ? 'like' : 'dislike',
+            status: $(this).hasClass('like') ? 'like' : 0,
         };
         $.ajax({
             url: '../proses/like.php',
@@ -222,21 +205,31 @@ if ($result) {
             data: data,
             success:function(response){
                 var id_foto = data['id_foto'];
+                var likes = $('.likes_cont' + id_foto);
+                var likesCount = likes.data('count');
                 var likeButton = $(".like[data-foto-id=" + id_foto + "]");
                 if(response == 'newlike'){
-                    likeButton.addClass('fu')
-                }
-                else if(response == "changetolike"){
-                    likeButton.addClass('selected');
+                    likes.html(parseInt($('.likes_cont' + id_foto).text()) + 1);
                     likeButton.addClass('fu');
                 }
                 else if(response == 'deletelike'){
+                    likes.html(parseInt($('.likes_cont' + id_foto).text()) - 1);
                     likeButton.removeClass('selected');
                     likeButton.removeClass('fu');
                 } 
             }
         })
     })
+
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.view, .repo, #oto, #ox, .box_add').length) {
+            $('#mrk').fadeOut();
+            $('#sv').css('transform', 'translateY(-755px)');
+            $('#pop').css('transform', 'translateY(-755px)');
+            $('#pro').css('transform', 'translateY(-755px)');
+            $('#wrapl').css('transform', 'translateY(-755px)');
+        }
+    });
 
     window.addEventListener('scroll', function() {
     var nav = document.getElementById('navbar');

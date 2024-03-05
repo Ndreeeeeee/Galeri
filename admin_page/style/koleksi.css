@@ -17,10 +17,11 @@ body{
     --wht-clr:#fff;
 }
 .box_mrk{
-    transform: translateY(-820px);
+    transform: translateY(-80px);
+    display: none;
     position: fixed;
     width: 100%;
-    height: 100vh;
+    height: 120vh;
     z-index: 3;
     backdrop-filter: 1px ;
     background: #4949499a;
@@ -167,6 +168,138 @@ body{
 
 
 
+
+
+.repo{
+    position: absolute;
+    transform: translate(0px, 150px);
+    border: 0px solid;
+    margin: -85px auto;
+    width: 100%;
+    height: 100%;
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    display: block;
+}
+.tas{
+    border: 0px solid;
+    width: 33%;
+    height: 80%;
+    margin: 0px auto;
+    background: #fff;
+    border-radius: 15px;
+}
+.oph{
+    border: 0px solid;
+    border-radius: 15px 15px 0px 0px; 
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0px;
+    box-shadow: 0px 2px 2px #5555559f;
+}
+.oph span ion-icon{
+    --ionicon-stroke-width: 35px;
+    font-size: 1.8rem;
+    margin-bottom: -10px;
+    margin-right: 10px;
+    background: var(--blue-clr);
+    color: #fff;
+    padding: 5px;
+    border-radius: 7px;
+}
+.oph p{
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.reptyp{
+    border: 0px solid;
+    margin: 10px 0px 10px 0px;
+    height: 75%;
+    overflow-y: scroll;
+}
+.reptyp::-webkit-scrollbar{
+    background: rgba(0, 0, 0, 0);
+    width: 5px;
+}
+.reptyp::-webkit-scrollbar-thumb{
+    background: var(--blue-clr);
+    border-radius: 10px;
+}
+.lapor{
+    border: 0px solid;
+    width: 93%;
+    height: fit-content;
+    margin: 10px auto;
+    padding: 10px;
+    background: #eeee;
+    border-radius: 5px;
+}
+.crew{
+    position: relative;
+    display: flex;
+    border: 0px solid;
+    padding: 0px 0px 0px 35px;
+}
+.sot{
+    border: 2px solid var(--blue-clr);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    top: -10px;
+    left: -12px;
+    transition: 0.2s linear;
+}
+.crew p{
+    font-weight: 600;
+}
+[type="radio"]:checked + label{
+    border: 10px solid var(--blue-clr);
+}
+.dek{
+    border: 0px solid;
+    font-size: 0.7rem;
+    margin: 5px 0px 0px 35px;
+}
+.boh{
+    width: 100%;
+    border: 0px solid;
+    display: flex;
+    padding: 10px;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px -2px 2px #5555559f;
+}
+.tk{
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: 2px solid;
+    background: #eeee;
+    color: black;
+    padding: 3px 15px;
+    border-radius: 4px;
+    margin: 2px 0px 0px 25px;
+    cursor: pointer;
+}
+.stran{
+    position: relative;
+    font-size: 1.1rem;
+    margin-top: 2px;
+    font-weight: 500;
+    border: 2px solid black;
+    top: -9px;
+    left: 180px;
+    background: var(--blue-clr);
+    color: #fff;
+    padding: 3px 15px;
+    border-radius: 4px;
+}
+
+
+
+
 .pop{
     transform: translateY(-800px);
     position: fixed;
@@ -215,7 +348,13 @@ body{
     overflow-y: scroll;
     width: 100%;
     height: 100%;
-    padding: 5px 5px;
+    padding: 0px 5px 0px 0px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.wrp_img:hover .title{
+    opacity: 0;
 }
 .wrp_img::-webkit-scrollbar{
     background: rgba(0, 0, 0, 0);
@@ -229,6 +368,56 @@ body{
     min-width: 100%;
     max-width: 100%;
     border-radius: 10px;
+}
+.wrp_img .title{
+    position: absolute;
+    border: 0px solid;
+    background: #fff;
+    opacity: 0.9;
+    width: 430px;
+    height: fit-content;
+    top: 14.5%;
+    border-radius: 10px 0px 0px 0px;
+    box-shadow: 1px 2px 3px #00000035;
+    transition: 0.2s linear;
+    padding: 10px;
+}
+.wrp_img .title:hover{
+    opacity: 1;
+}
+.title .jdl{
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.title .soko{
+    position: absolute;
+    cursor: pointer;
+    transform: translate(390px, -30px);
+}
+.title .siu{
+    position: absolute;
+    cursor: pointer;
+    display: none;
+    border: 1px solid;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    background: #fff;
+    border-radius: 3px;
+    transform: translate(270px, -35px);
+}
+.title .desk{
+    margin-bottom: 25px;
+}
+.title .sup{
+    transform: translate(230px, -15px);
+}
+.loy{
+    position: absolute;
+    font-size: 0.7rem;
+    z-index: 1;
+    width: fit-content;
+    transform: translate(150px, -15px);
 }
 .poptx{
     border: 0px solid;
@@ -255,7 +444,6 @@ body{
     display: flex;
     align-items: center;
     gap: 10px;
-
 }
 .bypos .ftopos{
     border: 2px solid var(--blue-clr);
@@ -357,17 +545,43 @@ body{
 }
 .kom{
     border: 0px solid;
+    position: relative;
     width:80%;
     padding: 0px 15px;
 }
+
 .kom p:nth-of-type(1){
     font-weight: 600;
     font-size: 1.1rem;
     margin-bottom: 5px;
+    border: 0px solid;
+    width: 290px;
+}
+.kom .sono{
+    position: absolute;
+    transform: translate(310px, -30px);
+    cursor: pointer;
+}
+.kom .si{
+    border: 1px solid;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    background: #fff;
+    border-radius: 3px;
+    transform: translate(210px, -30px);
+    position: absolute;
+    cursor: pointer;
+    display: none;
+    z-index: 2;
+}
+.kom .si:hover{
+    background: #eeee;
 }
 .kom p:nth-of-type(2){
     font-weight: 400;
     font-size: 0.9rem;
+    margin-bottom: 15px;
 }
 .senko{
     border: 0px solid;
@@ -400,6 +614,7 @@ body{
     transform: translate(370px, -1px);
     cursor: pointer;
 }
+
 
 
 
@@ -516,6 +731,8 @@ body{
 
 
 
+
+
 .nav{
     position: fixed;
     background-color: #fff;
@@ -563,7 +780,7 @@ label{
 }
 #src{
     padding: 10px 15px 10px 45px;
-    width: 840px;
+    width: 765px;
     font-size: 1.1rem;
     border: none;
     background: var(--back-clr);
@@ -594,6 +811,112 @@ label{
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.144);
 }
 
+.container {
+    width: 1300px;
+    margin: 15px auto;
+    columns: 5;
+    column-gap: 30px;
+}
+.container .box {
+    position: relative;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+    overflow: hidden; 
+}
+.container .box .pic{
+    position: absolute;
+    border-radius: 15px;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.329);
+    transition: 0.2s; 
+}
+.container .box img {
+    max-width: 100%;
+    border-radius: 15px;
+    transition: 0.1s linear;
+}
+.container .box:hover .ghst{
+    display: block;
+}
+.container .box:hover .pic{
+    display: block;
+}
+.container .box:hover img{
+    transform: scale(1.1);
+}
+.container .box .ghst {
+    position: absolute;
+    border-radius: 15px;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    transition: 0.2s; 
+}
+.asos{
+    border: 0px solid;
+    height: fit-content;
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    padding: 10px 10px;
+}
+.asos .fa{
+    border: 0px solid;
+    background: #eeeeeece;
+    border-radius: 10%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+.asos .save{
+    border: 0px solid;
+    background: #eeeeeece;
+    border-radius: 10%;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+}
+.like{
+    -webkit-text-stroke: 1px var(--blue-clr); 
+    color: #eeeeee00; 
+}
+.cek{
+    -webkit-text-stroke: 1px black; 
+    color: #eeeeee00; 
+}
+.cok{
+    -webkit-text-stroke: 1px black; 
+    color: #eeeeee00; 
+}
+.fu{
+    color:var(--blue-clr);
+    -webkit-text-stroke: 0px black;  
+}
+
+.save:hover, .like:hover{
+    background: #ffffffee;
+}
 
 .open{
     width: 100%;

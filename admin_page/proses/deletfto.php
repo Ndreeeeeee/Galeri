@@ -32,6 +32,13 @@ foreach ($foto_ids as $foto_id) {
     if (!$result3) {
         die("Error deleting from likee table: " . $koneksi->error);
     }
+
+    // Menghapus data dari tabel report
+    $query4 = "DELETE FROM report WHERE id_foto = $foto_id";
+    $result4 = $koneksi->query($query4);
+    if (!$result3) {
+        die("Error deleting from report table: " . $koneksi->error);
+    }
 }
 
 // Kirimkan respons sukses ke JavaScript

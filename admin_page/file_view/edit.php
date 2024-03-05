@@ -35,6 +35,9 @@ $username = $_SESSION['username'];
         <a href="user.php" class="brn">
             Pengguna
         </a>
+        <a href="report.php" class="brn">
+            Laporan
+        </a>
         <a href="profile.php" class="prf">
             <img src="<?php echo $row["ftopro"]?>" alt="">
         </a>

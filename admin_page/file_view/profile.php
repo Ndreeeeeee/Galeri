@@ -27,6 +27,19 @@ $username = $_SESSION['username'];
         
     </div>
 
+    <div id="sv">
+        <div class="wrap_sv">
+            <div class="cls" id="clss">
+                <span>X</span>
+            </div>
+            <div class="up_sv">
+                Tambahkan Kekoleksi saya <span><ion-icon name="bookmark-outline"></ion-icon></span>
+            </div>
+        </div>
+        <div class="box_sv" id="oto">
+        </div>
+    </div>
+
     <div class="edpro" id="pro" style="">
         <div class="wrap_koll">
             <div class="cls" id="clss">
@@ -149,6 +162,9 @@ $username = $_SESSION['username'];
         </div>
         <a href="user.php" class="brn">
             Pengguna
+        </a>
+        <a href="report.php" class="brn">
+            Laporan
         </a>
         <a href="profile.php" class="prf">
             <img src="<?php echo $row["ftopro"]?>" alt="">
@@ -276,33 +292,136 @@ $username = $_SESSION['username'];
 </body>
 
 <script>
-    $('.like').click(function(){
-            var data = {
-                id_foto: $(this).data('foto-id'),
-                id_user: <?php echo $id_user; ?>,
-                status: $(this).hasClass('like') ? 'like' : 'dislike',
-            };
+    $(document).ready(function(){
+    $('#op_mrk').click(function(){
+            
             $.ajax({
-                url: '../proses/like.php',
-                type: 'post',
-                data: data,
-                success:function(response){
-                    var id_foto = data['id_foto'];
-                    var likeButton = $(".like[data-foto-id=" + id_foto + "]");
-                    if(response == 'newlike'){
-                        likeButton.addClass('fu')
-                    }
-                    else if(response == "changetolike"){
-                        likeButton.addClass('selected');
-                        likeButton.addClass('fu');
-                    }
-                    else if(response == 'deletelike'){
-                        likeButton.removeClass('selected');
-                        likeButton.removeClass('fu');
-                    } 
+                success: function(response) {
+                    $('#mrk').fadeIn();
+                    $('#wrapl').css('transform', 'translateY(-75px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
                 }
-            })
+            });
+        });
+    });
+
+    $(document).ready(function(){
+    $('.dit').click(function(){
+            
+            $.ajax({
+                success: function(response) {
+                    $('#mrk').fadeIn();
+                    $('#pro').css('transform', 'translateY(-75px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function(){
+    $('.save').click(function(){
+            var id_foto = $(this).data('foto-id');
+            var id_user = $(this).data('user-id');
+            var id_album = $(this).data('album-id');
+            
+            $.ajax({
+                type: 'GET',
+                url: '../proses/responkol.php',
+                data: {
+                    id_foto: id_foto,
+                    id_user: id_user,
+                    id_album: id_album
+                },
+                success: function(response) {
+                    $('#oto').html(response);
+                    $('#mrk').fadeIn();
+                    $('#sv').css('transform', 'translateY(-75px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    $(document).ready(function(){
+    $('#mrk').hide()
+    $('.pic').click(function(){
+            var id_foto = $(this).data('foto-id');
+            var id_user = $(this).data('user-id');
+            
+            $.ajax({
+                type: 'GET',
+                url: '../proses/responview.php',
+                data: {
+                    id_foto: id_foto,
+                    id_user: id_user
+                },
+                success: function(response) {
+                    $('#pop').html(response);
+                    $('#mrk').fadeIn();
+                    $('#pop').css('transform', 'translateY(-75px)');
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+
+    $(document).on('click', '.like', function(){
+        var data = {
+            id_foto: $(this).data('foto-id'),
+            id_user: <?php echo $id_user; ?>,
+            status: $(this).hasClass('like') ? 'like' : 0,
+        };
+        $.ajax({
+            url: '../proses/like.php',
+            type: 'post',
+            data: data,
+            success:function(response){
+                var id_foto = data['id_foto'];
+                var likes = $('.likes_cont' + id_foto);
+                var likesCount = likes.data('count');
+                var likeButton = $(".like[data-foto-id=" + id_foto + "]");
+                if(response == 'newlike'){
+                    likes.html(parseInt($('.likes_cont' + id_foto).text()) + 1);
+                    likeButton.addClass('fu');
+                }
+                else if(response == 'deletelike'){
+                    likes.html(parseInt($('.likes_cont' + id_foto).text()) - 1);
+                    likeButton.removeClass('selected');
+                    likeButton.removeClass('fu');
+                } 
+            }
         })
+    })
+
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.view, .repo, #oto, #ox, .box_add').length) {
+            $('#mrk').fadeOut();
+            $('#sv').css('transform', 'translateY(-755px)');
+            $('#pop').css('transform', 'translateY(-755px)');
+            $('#pro').css('transform', 'translateY(-755px)');
+            $('#wrapl').css('transform', 'translateY(-755px)');
+        }
+    });
+
+
+    $(document).on('click', '.soko', function() {
+        $.ajax({
+            success: function(response) {
+                $('.siu').css('display', 'block');;
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
 </script>
 
 <script src="../action/profile.js?v= <?php echo time(); ?>"></script>

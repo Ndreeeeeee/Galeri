@@ -27,19 +27,3 @@
         </form>
     </div>
     <?php } ?>
-
-    <script>
-        $(document).ready(function(){
-        $('.cls').click(function(){
-                $.ajax({
-                    success: function(response) {
-                        $('#mrk').css('transform', 'translateY(-800px)');
-                        $('#wrapl').css('transform', 'translateY(-755px)');
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr.responseText);
-                    }
-                });
-            });
-        });
-    </script>

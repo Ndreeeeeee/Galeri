@@ -63,8 +63,7 @@ if ($result) {
                     <p>Deskripsi :</p>
                     <div class="tf"><textarea class="inp" name="deskfto" id="" cols="0" rows="0" placeholder="Deskripsi Gambar..."></textarea></div>
                 </div>
-                <input style="display: none;" type="text" name="tglup" value="<?php date_default_timezone_set('Asia/Jakarta'); echo date("d F Y");?>">
-                <input style="display: none;" type="text" name="likefto" value="0">
+                <input style="display: none;" type="text" name="tglup" value="<?php date_default_timezone_set('Asia/Jakarta'); echo date("l, j F Y");?>">
             
                 <?php 
                     include '../proses/readuser.php';

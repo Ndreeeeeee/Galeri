@@ -39,6 +39,9 @@ if ($result) {
         <a href="user.php" class="brn">
             Pengguna
         </a>
+        <a href="report.php" class="brn">
+            Laporan
+        </a>
         <a href="profile.php" class="prf">
             <img src="<?php echo $row["ftopro"]?>" alt="">
         </a>
@@ -64,7 +67,6 @@ if ($result) {
                     <div class="tf"><textarea class="inp" name="deskfto" id="" cols="0" rows="0" placeholder="Deskripsi Gambar..."></textarea></div>
                 </div>
                 <input style="display: none;" type="text" name="tglup" value="<?php date_default_timezone_set('Asia/Jakarta'); echo date("d F Y");?>">
-                <input style="display: none;" type="text" name="likefto" value="0">
             
                 <?php 
                     include '../proses/readuser.php';

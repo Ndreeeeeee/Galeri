@@ -87,14 +87,12 @@
         </div>
     </div>
 <script>
-const cil = document.getElementById("cil");
-const cul = document.getElementById("cul");
-const ol = document.getElementById("ol");
-const il = document.getElementById("il");
-const ox = document.getElementById("ox");
-const boxcls = document.getElementById("cls");
-const boxmrk = document.getElementById("mrk");
-const pro = document.getElementById("pro");
+var cil = document.getElementById("cil");
+var cul = document.getElementById("cul");
+var ol = document.getElementById("ol");
+var il = document.getElementById("il");
+var ox = document.getElementById("ox");
+
 
 cil.addEventListener("click", function(){
     ol.style.display="none";
@@ -106,14 +104,23 @@ cul.addEventListener("click", function(){
     il.style.display="none";
     ox.style.height="600px";
 });
-boxcls.addEventListener("click", function(){
-    boxmrk.style.transform="translateY(-800px)";
-    pro.style.transform="translateY(-800px)";
+
+$(document).ready(function(){
+    $('.cls').click(function(){
+        $.ajax({
+            success: function(response) {
+                $('#mrk').fadeOut();
+                $('#pro').css('transform', 'translateY(-800px)');
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
 });
 
-
-const imageUploader = document.querySelector(".img-inp");
-const imagePreview = document.querySelector(".img-com");
+var imageUploader = document.querySelector(".img-inp");
+var imagePreview = document.querySelector(".img-com");
 
 function showImage() {
 let reader = new FileReader();

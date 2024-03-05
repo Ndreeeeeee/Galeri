@@ -43,7 +43,7 @@
         </a>
         <div class="src">
             <label for="src"><ion-icon name="search"></ion-icon></label>
-            <input type="text" name="" id="src" placeholder="Cari...." >
+            <input type="text" name="" id="src" placeholder="Cari...." onkeypress="handleKeyPress(event)">
         </div>
         
         <a href="../../signup.php" class="brn">
@@ -87,7 +87,7 @@
                 },
                 success: function(response) {
                     $('#pop').html(response);
-                    $('#mrk').css('transform', 'translateY(-85px)');
+                    $('#mrk').fadeIn();
                     $('#pop').css('transform', 'translateY(-75px)');
                 },
                 error: function(xhr, status, error) {
@@ -98,21 +98,12 @@
     });
 
     
-    $(document).ready(function(){
-    $('.cls').click(function(){
-            $.ajax({
-                success: function(response) {
-                    $('#mrk').css('transform', 'translateY(-800px)');
-                    $('#sv').css('transform', 'translateY(-755px)');
-                    $('#pop').css('transform', 'translateY(-755px)');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.view').length) {
+            $('#mrk').fadeOut();
+            $('#pop').css('transform', 'translateY(-755px)');
+        }
     });
-
 
 </script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

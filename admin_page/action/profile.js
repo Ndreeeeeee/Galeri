@@ -2,19 +2,9 @@ const addmem = document.getElementById("btn1");
 const showmem = document.getElementById("frm1");
 const showmemm = document.getElementById("frm2");
 const exitmem = document.getElementById("btn2");
-const opmrk = document.getElementById("op_mrk");
-const boxmrk = document.getElementById("mrk");
 const mom = document.getElementById("ok");
-const boxcls = document.getElementById("cls");
-const boxclss = document.getElementById("clss");
-const wrp = document.getElementById("wrapl");
-const dit = document.getElementById("dit");
-const pro = document.getElementById("pro");
 const cil = document.getElementById("cil");
 const cul = document.getElementById("cul");
-const ol = document.getElementById("ol");
-const il = document.getElementById("il");
-const ox = document.getElementById("ox");
 
 
 addmem.addEventListener("click", function(){
@@ -32,26 +22,6 @@ exitmem.addEventListener("click", function(){
 });
 
 
-opmrk.addEventListener("click", function(){
-    boxmrk.style.transform="translateY(-75px)";
-    wrp.style.transform="translateY(-75px)";
-    
-});
-boxcls.addEventListener("click", function(){
-    boxmrk.style.transform="translateY(-800px)";
-    wrp.style.transform="translateY(-800px)";
-    mom.style.overflow="visible";
-});
-
-
-dit.addEventListener("click", function(){
-    pro.style.transform="translateY(-75px)";
-    boxmrk.style.transform="translateY(-75px)";
-});
-boxclss.addEventListener("click", function(){
-    pro.style.transform="translateY(-800px)";
-    boxmrk.style.transform="translateY(-800px)";
-});
 cil.addEventListener("click", function(){
     ol.style.display="none";
     il.style.display="block";
@@ -145,6 +115,15 @@ reader.onload = function(e) {
 };
 }
 
+window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (window.scrollY > 0) {
+        nav.classList.add('shadow');
+    } else {
+        nav.classList.remove('shadow');
+    }
+});
+
 $(document).ready(function() {
     $('#sub').on('click', function(e) {
         e.preventDefault(); // Menghentikan aksi bawaan submit form
@@ -202,70 +181,7 @@ $(document).ready(function() {
             
             // Lakukan navigasi ke edit.php jika foto_ids sudah ditentukan
             if (foto_ids.length === 1) {
-                window.location.href = "edit.php?foto_id=" + foto_ids[0];
-            }
-        }
-    });
-});
-
-$(document).ready(function(){
-    // Ketika elemen dengan ID "ho" diklik
-    $('#oh').click(function(){
-        // Loop melalui semua elemen dengan kelas "roy"
-        $('.roy').each(function(){
-            // Mengubah properti tampilan menjadi block
-            $(this).css('display', 'none');
-        });
-    });
-});
-
-$(document).ready(function(){
-    // Ketika elemen dengan ID "ho" diklik
-    $('#ho').click(function(){
-        // Loop melalui semua elemen dengan kelas "roy"
-        $('.roy').each(function(){
-            // Mengubah properti tampilan menjadi block
-            $(this).css('display', 'block');
-        });
-    });
-});
-
-
-        
-window.addEventListener('scroll', function() {
-    var nav = document.getElementById('navbar');
-    if (window.scrollY > 0) {
-        nav.classList.add('shadow');
-    } else {
-        nav.classList.remove('shadow');
-    }
-});
-
-$(document).ready(function() {
-    $('#pul').on('click', function(e) {
-        e.preventDefault(); // Menghentikan aksi bawaan submit form
-        
-        // Array untuk menyimpan data foto yang akan dihapus
-        var foto_ids = [];
-
-        // Mendapatkan foto_ids dari checkbox yang diceklis
-        $('.checkbox:checked').each(function() {
-            var foto_id = $(this).data('foto-id');
-            foto_ids.push(foto_id);
-        });
-
-        console.log("fotoIds:", foto_ids); // Tambahkan ini untuk memeriksa apakah nilai foto_ids sudah benar
-        
-        // Jika lebih dari satu checkbox terceklis, sembunyikan elemen dengan id 'pul'
-        if (foto_ids.length > 1) {
-            $('#pul').hide();
-        } else {
-            // Jika hanya satu atau tidak ada checkbox terceklis, tampilkan kembali elemen dengan id 'pul'
-            $('#pul').show();
-            
-            // Lakukan navigasi ke edit.php jika foto_ids sudah ditentukan
-            if (foto_ids.length === 1) {
-                window.location.href = "edit.php?foto_id=" + foto_ids[0];
+                window.location.href = "edit.php?id_foto=" + foto_ids[0];
             }
         }
     });
@@ -333,6 +249,7 @@ $(document).ready(function(){
                 });
             });
         });
+        
     
     
         
