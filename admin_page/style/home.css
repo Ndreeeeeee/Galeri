@@ -410,14 +410,14 @@ body{
     margin-bottom: 25px;
 }
 .title .sup{
-    transform: translate(230px, -15px);
+    transform: translate(210px, -15px);
 }
 .loy{
     position: absolute;
     font-size: 0.7rem;
     z-index: 1;
     width: fit-content;
-    transform: translate(150px, -15px);
+    transform: translate(135px, -15px);
 }
 .poptx{
     border: 0px solid;
