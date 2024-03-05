@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 01 Feb 2024 pada 00.34
+-- Waktu pembuatan: 02 Mar 2024 pada 01.27
 -- Versi server: 8.0.30
 -- Versi PHP: 8.1.10
 
@@ -31,8 +31,21 @@ CREATE TABLE `album` (
   `id_album` int NOT NULL,
   `namealbum` varchar(255) NOT NULL,
   `desk` varchar(255) NOT NULL,
-  `tgl_albm` date NOT NULL,
+  `tgl_albm` varchar(255) NOT NULL,
   `id_user` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `album_foto`
+--
+
+CREATE TABLE `album_foto` (
+  `id` int NOT NULL,
+  `id_album` int NOT NULL,
+  `id_foto` int NOT NULL,
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -46,8 +59,6 @@ CREATE TABLE `foto` (
   `jdlfto` varchar(255) NOT NULL,
   `deskfto` text NOT NULL,
   `tglup` varchar(255) NOT NULL,
-  `likefto` int NOT NULL,
-  `id_album` int NOT NULL,
   `id_user` int NOT NULL,
   `fto` varchar(10000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -56,16 +67,8 @@ CREATE TABLE `foto` (
 -- Dumping data untuk tabel `foto`
 --
 
-INSERT INTO `foto` (`id_foto`, `jdlfto`, `deskfto`, `tglup`, `likefto`, `id_album`, `id_user`, `fto`) VALUES
-(5, 'Makima', 's', '31 January 2024', 0, 0, 3, '../foto/makiam.jpg'),
-(6, 'Raiden Ei', 'istriku', '31 January 2024', 0, 0, 3, '../foto/WhatsApp Image 2022-08-25 at 07.55.03.jpeg'),
-(7, 'Sukuna', 'Stand Proud', '31 January 2024', 0, 0, 3, '../foto/stand proud.jpg'),
-(9, 'As A mantis', 'kake', '31 January 2024', 0, 0, 3, '../foto/genshin-impact-anime-boys-zhongli-genshin-impact-hd-wallpaper-preview.jpg'),
-(10, 'MOnarch', 'aa', '31 January 2024', 0, 0, 3, '../foto/WhatsApp Image 2022-08-25 at 07.54.49.jpeg'),
-(11, 'Reze', 'Bum', '31 January 2024', 0, 0, 3, '../foto/reze_digital_art_x4.jpg'),
-(12, 'wp', 'ecchi', '31 January 2024', 0, 0, 4, '../foto/wlp shogun.png'),
-(13, 'mama', 'aku takut', '31 January 2024', 0, 0, 3, '../foto/huaa.jfif'),
-(14, 'ora ora', 'stra platinum', '31 January 2024', 0, 0, 3, '../foto/obkZH00_gif (450×253).gif');
+INSERT INTO `foto` (`id_foto`, `jdlfto`, `deskfto`, `tglup`, `id_user`, `fto`) VALUES
+(71, 'Kafka', 'Honkai Star Rail', '01 March 2024', 19, '../../foto/Kafka Wallpaper.jpg');
 
 -- --------------------------------------------------------
 
@@ -77,9 +80,17 @@ CREATE TABLE `komentar` (
   `id_komen` int NOT NULL,
   `id_foto` int NOT NULL,
   `id_user` int NOT NULL,
-  `komentar` text NOT NULL,
-  `tgl_komen` date NOT NULL
+  `komentar` varchar(255) NOT NULL,
+  `tgl_komen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `komentar`
+--
+
+INSERT INTO `komentar` (`id_komen`, `id_foto`, `id_user`, `komentar`, `tgl_komen`) VALUES
+(181, 71, 19, 'ko', '01-03-2024'),
+(184, 71, 19, 'aa', '01-03-2024');
 
 -- --------------------------------------------------------
 
@@ -91,8 +102,17 @@ CREATE TABLE `likee` (
   `id_like` int NOT NULL,
   `id_foto` int NOT NULL,
   `id_user` int NOT NULL,
-  `tgl_like` date NOT NULL
+  `status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data untuk tabel `likee`
+--
+
+INSERT INTO `likee` (`id_like`, `id_foto`, `id_user`, `status`) VALUES
+(3054, 71, 16, 'like'),
+(3077, 71, 17, 'like'),
+(3078, 71, 17, 'like');
 
 -- --------------------------------------------------------
 
@@ -107,17 +127,19 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `fullname` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL
+  `role` varchar(255) NOT NULL,
+  `ftopro` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`, `email`, `fullname`, `alamat`, `role`) VALUES
-(3, 'ainz', 'zenzen', 'andreilhamnugraha@gmail.com', 'Andre Ilham Nugraha', 'Dobo', 'user'),
-(4, 'hitam', 'gilang', 'satoru@gmail.com', 'gilang', 'cisaga', 'user'),
-(5, 'SkyL', 'darkside', 'gojo@gmail.com', 'zahwan', 'woeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 'user');
+INSERT INTO `user` (`id_user`, `username`, `password`, `email`, `fullname`, `alamat`, `role`, `ftopro`) VALUES
+(16, 'ainz', 'confrim', 'andre@gmail.com', 'Andre ', 'Kota Banjar, Kecamatan Pataruman', 'admin', '../../foto/FNlhFe9dL1Dmu3s on twt.jpg'),
+(17, 'rezz', 'murasaki', 'satoru@gmail.com', 'M rezza ', 'Kota Ciamis, Kecamatan Pamarican', 'user', '../../foto/♱.jpg'),
+(18, 'Rwhycee', 'reza1234', 'muhammadreza@gmail.com', 'muhammad rezza', 'Pamarican', 'user', '../../foto/Evangelion EVA 01.jpg'),
+(19, 'Raiden', 'kaminari', 'ei@gmail.com', 'Raiden Ei', 'Inazuma city', 'user', '../../foto/raiden_shogun.jpg');
 
 --
 -- Indexes for dumped tables
@@ -128,6 +150,12 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `email`, `fullname`, `ala
 --
 ALTER TABLE `album`
   ADD PRIMARY KEY (`id_album`);
+
+--
+-- Indeks untuk tabel `album_foto`
+--
+ALTER TABLE `album_foto`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `foto`
@@ -161,31 +189,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `album`
 --
 ALTER TABLE `album`
-  MODIFY `id_album` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_album` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT untuk tabel `album_foto`
+--
+ALTER TABLE `album_foto`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT untuk tabel `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id_foto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_foto` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT untuk tabel `komentar`
 --
 ALTER TABLE `komentar`
-  MODIFY `id_komen` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_komen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 
 --
 -- AUTO_INCREMENT untuk tabel `likee`
 --
 ALTER TABLE `likee`
-  MODIFY `id_like` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id_like` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3079;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
