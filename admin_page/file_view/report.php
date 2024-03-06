@@ -72,7 +72,7 @@ if ($result) {
             <div class="dat">
                 <?php 
                 $no = 1;
-                $query = "SELECT * FROM report";
+                $query = "SELECT * FROM report GROUP BY id_repo DESC";
                 $rep = mysqli_query($koneksi, $query);
                 while($shw = mysqli_fetch_assoc($rep)){
                     $id_foto = $shw["id_foto"];
