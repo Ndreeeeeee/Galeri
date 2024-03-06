@@ -96,7 +96,7 @@ if ($result) {
             $id_foto = $foto["id_foto"];
             $id_user = $_SESSION["id_user"];
             if($foto["id_album"] == $id_album){
-            $status = mysqli_query($koneksi, "SELECT status FROM likee WHERE id_foto = $id_foto AND id_user = $id_user");
+            $status = mysqli_query($koneksi, "SELECT status FROM likee WHERE id_foto = $id_foto AND id_user = $id_user ");
             if(mysqli_num_rows($status) > 0){
                 $status = mysqli_fetch_assoc($status)['status'];
             }

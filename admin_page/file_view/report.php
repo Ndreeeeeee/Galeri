@@ -147,7 +147,7 @@ if ($result) {
         });
     });
 
-    function confirmDelete(userId) {
+    function confirmDelete() {
     var confirmation = confirm("Apakah Anda yakin ingin menghapus postingan ini?");
     if (confirmation) {
         $(document).ready(function(){

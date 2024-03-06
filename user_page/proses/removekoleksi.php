@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_album = mysqli_real_escape_string($koneksi, $_POST['id_album']);
 
         // Query untuk menghapus data dari tabel album_foto
-        $query = "DELETE FROM album_foto WHERE id_foto = '$id_foto' AND id_album = '$id_album'";
+        $query = "UPDATE album_foto SET hapus = 1 WHERE id_foto = '$id_foto' AND id_album = '$id_album'";
         
         // Eksekusi query
         if (mysqli_query($koneksi, $query)) {

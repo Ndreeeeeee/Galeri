@@ -69,7 +69,7 @@ if ($result) {
         <?php 
         require '../config/config.php';
 
-        $fotos = mysqli_query($koneksi, 'SELECT * FROM foto');
+        $fotos = mysqli_query($koneksi, 'SELECT * FROM foto WHERE hapus = 0');
         foreach($fotos as $foto) :
             include '../proses/readuser.php';
             if ($result) {

@@ -257,7 +257,7 @@ $username = $_SESSION['username'];
             include '../proses/readalbum.php';
             while($cur = mysqli_fetch_assoc($curse)){
             $id_album = $cur["id_album"];
-            $query = "SELECT COUNT(id_foto) AS tal FROM album_foto WHERE id_album = $id_album";
+            $query = "SELECT COUNT(id_foto) AS tal FROM album_foto WHERE id_album = $id_album AND hapus = 0";
             $cotfto = mysqli_query($koneksi, $query);
             $il =  mysqli_fetch_assoc($cotfto);
         ?>

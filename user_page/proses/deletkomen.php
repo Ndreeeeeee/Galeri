@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["id_komen"])) {
         $id_komen = $_POST["id_komen"];
 
-        $query = "DELETE FROM komentar WHERE id_komen = $id_komen";
+        $query = "UPDATE komentar SET hapus = 1 WHERE id_komen = $id_komen";
         $result = mysqli_query($koneksi, $query);
 
         if ($result) {

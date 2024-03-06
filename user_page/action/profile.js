@@ -124,44 +124,37 @@ window.addEventListener('scroll', function() {
     }
 });
 
-function confirmDelete(userId) {
-    var confirmation = confirm("Apakah Anda yakin ingin menghapus postingan ini?");
-    if (confirmation) {
-        $(document).ready(function() {
-            $('#sub').on('click', function(e) {
-                e.preventDefault(); // Menghentikan aksi bawaan submit form
-                
-                // Array untuk menyimpan data foto yang akan dihapus
-                var foto_ids = [];
+$(document).ready(function() {
+    $('#sub').on('click', function(e) {
+        e.preventDefault(); // Menghentikan aksi bawaan submit form
         
-                // Mendapatkan foto_ids dari checkbox yang diceklis
-                $('.checkbox:checked').each(function() {
-                    var foto_id = $(this).data('foto-id');
-                        foto_ids.push(foto_id);
-                });
-        
-                // Kirim AJAX request ke server untuk menghapus data foto
-                $.ajax({
-                    type: 'POST',
-                    url: '../proses/deletfto.php', // Ganti dengan URL yang sesuai dengan file PHP Anda
-                    data: { foto_ids: foto_ids },
-                    success: function(response) {
-                        // Handle sukses, misalnya refresh halaman atau tampilkan pesan sukses
-                        window.location.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        // Handle error, misalnya tampilkan pesan error
-                        alert('Terjadi kesalahan saat menghapus foto');
-                        console.error(error);
-                    }
-                });
-            });
+        // Array untuk menyimpan data foto yang akan dihapus
+        var foto_ids = [];
+
+        // Mendapatkan foto_ids dari checkbox yang diceklis
+        $('.checkbox:checked').each(function() {
+            var foto_id = $(this).data('foto-id');
+                foto_ids.push(foto_id);
         });
-    } else {
-        // Jika pengguna membatalkan penghapusan, tidak ada tindakan yang diambil
-        return false;
-    }
-}
+
+        // Kirim AJAX request ke server untuk menghapus data foto
+        $.ajax({
+            type: 'POST',
+            url: '../proses/deletfto.php', // Ganti dengan URL yang sesuai dengan file PHP Anda
+            data: { foto_ids: foto_ids },
+            success: function(response) {
+                // Handle sukses, misalnya refresh halaman atau tampilkan pesan sukses
+                window.location.reload();
+            },
+            error: function(xhr, status, error) {
+                // Handle error, misalnya tampilkan pesan error
+                alert('Terjadi kesalahan saat menghapus foto');
+                console.error(error);
+            }
+        });
+    });
+});
+
 
 
 $(document).ready(function() {
