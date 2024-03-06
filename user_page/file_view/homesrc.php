@@ -104,7 +104,7 @@ if ($result) {
     </div>
 </body>
 <script type="text/javascript">
-    $(document).ready(function(){
+        $(document).ready(function(){
     $('.save').click(function(){
             var id_foto = $(this).data('foto-id');
             var id_user = $(this).data('user-id');
@@ -119,7 +119,7 @@ if ($result) {
                     id_album: id_album
                 },
                 success: function(response) {
-                    $('#ox').html(response);
+                    $('#oto').html(response);
                     $('#mrk').fadeIn();
                     $('#sv').css('transform', 'translateY(-75px)');
                 },
@@ -156,22 +156,6 @@ if ($result) {
     });
 
     
-    $(document).ready(function(){
-    $('.cls').click(function(){
-            $.ajax({
-                success: function(response) {
-                    $('#mrk').fadeOut();
-                    $('#sv').css('transform', 'translateY(-755px)');
-                    $('#pop').css('transform', 'translateY(-755px)');
-                },
-                error: function(xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
-            });
-        });
-    });
-
-
     $(document).on('click', '.like', function(){
         var data = {
             id_foto: $(this).data('foto-id'),
@@ -199,9 +183,31 @@ if ($result) {
             }
         })
     })
+
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('.view, .repo, #oto').length) {
+            $('#mrk').fadeOut();
+            $('#sv').css('transform', 'translateY(-755px)');
+            $('#pop').css('transform', 'translateY(-755px)');
+        }
+    });
+
+
+    $(document).on('click', '.soko', function() {
+        $.ajax({
+            success: function(response) {
+                $('.siu').css('display', 'block');;
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    });
 </script>
 <script src="../action/home.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </html>
-<?php } ?>
+<?php } else {
+    echo "<script>alert('Tolong Login terlebih dahulu'); document.location='../../index.php';</script>";
+} ?>

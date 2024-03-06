@@ -3,7 +3,7 @@
         include '../config/config.php';
         $id_user = $_GET['id_user'];
         $id_foto = $_GET['id_foto'];
-        $id_album = $_GET['id_album'];
+
         
         $query = "SELECT * FROM album WHERE id_user = $id_user";
         $hasilbum = mysqli_query($koneksi, $query); 

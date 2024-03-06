@@ -426,5 +426,7 @@ $username = $_SESSION['username'];
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </html>
 <?php
+} else {
+    echo "<script>alert('Tolong Login terlebih dahulu'); document.location='../../index.php';</script>";
 }
 ?>

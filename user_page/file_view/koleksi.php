@@ -26,7 +26,7 @@ if ($result) {
 <div class="box_mrk" id="mrk"></div>
     <div class="mark" id="sv">
         <div class="wrap_koll">
-            <div class="" id="clss">
+            <div class="cls" id="clss">
                 <span>X</span>
             </div>
             <div class="upper">
@@ -253,4 +253,6 @@ function handleKeyPress(event) {
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </html>
-<?php } ?>
+<?php } else {
+    echo "<script>alert('Tolong Login terlebih dahulu'); document.location='../../index.php';</script>";
+} ?>

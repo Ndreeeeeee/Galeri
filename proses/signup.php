@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($koneksi, $checkEmailQuery);
 
     if (mysqli_num_rows($result) > 0) {
-        echo "<script>alert('Email yang diinputkan sudah ada');</script>";
+        echo "<script>alert('Email yang diinputkan sudah ada'); document.location='../signup.php';</script>";
     } else {
         $sql = "INSERT INTO user (username, email, password, alamat, fullname, role, ftopro) VALUES ('$username', '$email', '$password', '$alamat', '$fullname', '$role', 'ok')";
         if ($koneksi->query($sql) === TRUE) {
