@@ -1,6 +1,6 @@
 <?php
-
 include '../config/config.php';
+
 // Ambil data yang diterima dari permintaan AJAX
 $id_foto = $_POST['id_foto'];
 $id_album = $_POST['id_album'];
@@ -11,24 +11,22 @@ $sql_check = "SELECT id_foto FROM album_foto WHERE id_foto = '$id_foto' AND id_a
 $result_check = $koneksi->query($sql_check);
 
 if ($result_check->num_rows > 0) {
-    // Jika data sudah ada, beri respons bahwa data sudah ada
-    echo "Data dengan id_foto=$id_foto dan id_user=$id_user sudah ada dalam tabel album_foto.";
+    // Jika data sudah ada, ubah nilai kolom "hapus" menjadi 1
+    $sql_update = "UPDATE album_foto SET hapus = 0 WHERE id_foto = '$id_foto' AND id_album = '$id_album'";
+    if ($koneksi->query($sql_update) === TRUE) {
+        echo "Data sudah ada dalam tabel album_foto. Nilai kolom hapus diubah menjadi 1.";
+    } else {
+        echo "Error: " . $sql_update . "<br>" . $koneksi->error;
+    }
 } else {
     // Jika data belum ada, lakukan penyimpanan
-
-    $sql = "INSERT INTO album_foto (id_foto, id_album, status) VALUES ('$id_foto', '$id_album', '$status')";
-
-    if ($koneksi->query($sql) === TRUE) {
+    $sql_insert = "INSERT INTO album_foto (id_foto, id_album, status) VALUES ('$id_foto', '$id_album', '$status')";
+    if ($koneksi->query($sql_insert) === TRUE) {
         echo "Data berhasil disimpan";
     } else {
-        echo "Error: " . $sql . "<br>" . $koneksi->error;
+        echo "Error: " . $sql_insert . "<br>" . $koneksi->error;
     }
 }
 
 $koneksi->close();
 ?>
-
-
-<!-- // Tentukan nilai default untuk id_album jika tidak disediakan
-$id_album = isset($_POST['id_album']) ? $_POST['id_album'] : 0; */ -->
-

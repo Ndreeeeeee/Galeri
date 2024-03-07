@@ -72,7 +72,7 @@ if ($result) {
             <div class="dat">
                 <?php 
                 $no = 1;
-                $query = "SELECT * FROM report GROUP BY id_repo DESC";
+                $query = "SELECT * FROM report WHERE hapus = 0 GROUP BY id_repo DESC";
                 $rep = mysqli_query($koneksi, $query);
                 while($shw = mysqli_fetch_assoc($rep)){
                     $id_foto = $shw["id_foto"];
@@ -147,7 +147,7 @@ if ($result) {
         });
     });
 
-    function confirmDelete() {
+    function confirmDelete(userId) {
     var confirmation = confirm("Apakah Anda yakin ingin menghapus postingan ini?");
     if (confirmation) {
         $(document).ready(function(){

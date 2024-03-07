@@ -61,9 +61,9 @@ if ($result) {
             <div class="conten">
                 <?php 
                 include '../config/config.php';
-                $query = "SELECT * FROM user";
+                $query = "SELECT * FROM user WHERE hapus = 0";
                 $result = mysqli_query($koneksi, $query);
-                $query = "SELECT COUNT(*) as total FROM user";
+                $query = "SELECT COUNT(*) as total FROM user WHERE hapus = 0";
                 $hasil = mysqli_query($koneksi, $query);
                 if($ruw = mysqli_fetch_assoc($hasil));
                 while($row = mysqli_fetch_assoc($result)){

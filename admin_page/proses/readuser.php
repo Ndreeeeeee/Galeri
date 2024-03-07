@@ -11,18 +11,17 @@ $total  = mysqli_query($koneksi,
 "SELECT u.id_user, u.username, COUNT(f.id_foto) AS total_foto
 FROM user u
 LEFT JOIN foto f ON u.id_user = f.id_user
-WHERE u.id_user = $id_useer
-GROUP BY u.id_user 
+WHERE u.id_user = $id_useer AND f.hapus = 0
 ");
 
-$query = "SELECT COUNT(id_user) as total FROM album WHERE id_user = $id_useer";
+$query = "SELECT COUNT(id_user) as total FROM album WHERE id_user = $id_useer AND hapus = 0";
 $tutal = mysqli_query($koneksi, $query);
 
 $query = 
 "SELECT COUNT(f.id_foto) AS total 
 FROM album AS a 
 JOIN album_foto AS f ON a.id_album = f.id_album 
-WHERE a.id_user = $id_useer;
+WHERE a.id_user = $id_useer AND f.hapus = 0;
 ";
 $tutul = mysqli_query($koneksi, $query);
 

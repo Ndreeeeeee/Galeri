@@ -951,10 +951,15 @@ a{
     grid-row-start: 1;
     grid-row-end: 3;
 }
-.tit{
+.tiu{
     font-weight: 600;
     font-size: 1.2rem;
-    padding: 10px 0px 14px 20px;
+    padding: 10px 0px 0px 10px;
+}
+.tak{
+    font-size: 1rem;
+    padding: 5px 0px 10px 10px;
+    
 }
 
 

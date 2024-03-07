@@ -5,12 +5,13 @@
         $id_foto = $_GET['id_foto'];
 
         
-        $query = "SELECT * FROM album WHERE id_user = $id_user";
+        $query = "SELECT * FROM album WHERE id_user = $id_user AND hapus = 0";
         $hasilbum = mysqli_query($koneksi, $query); 
 
         $query = "SELECT *
         FROM album_foto
         INNER JOIN foto ON album_foto.id_foto = foto.id_foto
+        WHERE album_foto.hapus = 0
         ORDER BY album_foto.id DESC";
         $mut = mysqli_query($koneksi, $query);
 

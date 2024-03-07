@@ -24,16 +24,16 @@ if ($result) {
 </head>
 <body>
     <div class="box_mrk" id="mrk"></div>
-    <div class="mark" id="sv">
-        <div class="wrap_koll">
+    <div id="sv">
+        <div class="wrap_sv">
             <div class="cls" id="clss">
                 <span>X</span>
             </div>
-            <div class="upper">
+            <div class="up_sv">
                 Tambahkan Kekoleksi saya <span><ion-icon name="bookmark-outline"></ion-icon></span>
             </div>
         </div>
-        <div class="box_add" id="ox">
+        <div class="box_sv" id="oto">
         </div>
     </div>
 
@@ -71,7 +71,7 @@ if ($result) {
         <?php 
         require '../config/config.php';
 
-        $fotos = mysqli_query($koneksi, 'SELECT * FROM foto');
+        $fotos = mysqli_query($koneksi, 'SELECT * FROM foto WHERE hapus = 0');
         foreach($fotos as $foto) :
             include '../proses/readuser.php';
             if ($result) {

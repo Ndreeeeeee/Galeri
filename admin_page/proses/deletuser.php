@@ -3,36 +3,24 @@ include '../config/config.php';
 
 $id_user = $_GET['id_user'];
 
-// Hapus data dari tabel album_foto terlebih dahulu
-$query = "SELECT id_foto FROM foto WHERE id_user = $id_user";
-$result = $koneksi->query($query);
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $id_foto = $row['id_foto'];
-        $delete_album_foto = "DELETE FROM album_foto WHERE id_foto = $id_foto";
-        if (!$koneksi->query($delete_album_foto)) {
-            echo "Error deleting album photos: " . $koneksi->error;
-            exit;
-        }
-    }
-}
-
-// Hapus data dari tabel yang terkait
-$query_delete_album = "DELETE FROM album WHERE id_user = $id_user";
-$query_delete_user = "DELETE FROM user WHERE id_user = $id_user";
-$query_delete_like = "DELETE FROM likee WHERE id_user = $id_user";
-$query_delete_foto = "DELETE FROM foto WHERE id_user = $id_user";
-$query_delete_komentar = "DELETE FROM komentar WHERE id_user = $id_user";
+// Update data di tabel yang terkait
+$query_update_album = "UPDATE album SET hapus = 2 WHERE id_user = $id_user";
+$query_update_user = "UPDATE user SET hapus = 2 WHERE id_user = $id_user";
+$query_update_like = "UPDATE likee SET hapus = 2 WHERE id_user = $id_user";
+$query_update_foto = "UPDATE foto SET hapus = 2 WHERE id_user = $id_user";
+$query_update_komentar = "UPDATE komentar SET hapus = 2 WHERE id_user = $id_user";
+$query_update_report = "UPDATE report SET hapus = 2 WHERE id_user = $id_user";
 
 // Mulai transaksi
 $koneksi->begin_transaction();
 
 if (
-    $koneksi->query($query_delete_album) === TRUE &&
-    $koneksi->query($query_delete_user) === TRUE &&
-    $koneksi->query($query_delete_like) === TRUE &&
-    $koneksi->query($query_delete_foto) === TRUE &&
-    $koneksi->query($query_delete_komentar) === TRUE
+    $koneksi->query($query_update_album) === TRUE &&
+    $koneksi->query($query_update_user) === TRUE &&
+    $koneksi->query($query_update_like) === TRUE &&
+    $koneksi->query($query_update_foto) === TRUE &&
+    $koneksi->query($query_update_komentar) === TRUE &&
+    $koneksi->query($query_update_report) === TRUE 
 ) {
     // Jika semua query berhasil, commit transaksi
     $koneksi->commit();

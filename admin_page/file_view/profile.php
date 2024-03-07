@@ -261,9 +261,12 @@ $username = $_SESSION['username'];
     <div class="containerr" id="frm2">
         <div class="add_mrk" id="op_mrk"><span>+</span> Tambah</div>
         <?php 
-            include '../proses/readalbum.php';
-            while($cur = mysqli_fetch_assoc($curse)){
-                $id_album = $cur["id_album"]
+           include '../proses/readalbum.php';
+           while($cur = mysqli_fetch_assoc($curse)){
+           $id_album = $cur["id_album"];
+           $query = "SELECT COUNT(id_foto) AS tal FROM album_foto WHERE id_album = $id_album AND hapus = 0";
+           $cotfto = mysqli_query($koneksi, $query);
+           $il =  mysqli_fetch_assoc($cotfto);
         ?>
         <a href="koleksi.php?id_album=<?php echo $cur["id_album"] ?>">
         <div class="wrap_boxx">
@@ -283,7 +286,8 @@ $username = $_SESSION['username'];
             ?>
             
         </div>
-        <div class="tit"><?php echo $cur["namealbum"] ?></div>
+        <div class="tiu"><?php echo $cur["namealbum"] ?></div>
+        <div class="tak">Tersimpan : <?php echo $il["tal"] ?></div>
     </div>
         </a>
         <?php } ?>

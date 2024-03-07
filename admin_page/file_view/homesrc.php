@@ -74,7 +74,7 @@ if ($result) {
     <?php 
     require '../config/config.php';
     $searchText = $_GET['search'];
-    $fotos = mysqli_query($koneksi, "SELECT * FROM foto WHERE jdlfto LIKE '%$searchText%' OR deskfto LIKE '%$searchText%'");
+    $fotos = mysqli_query($koneksi, "SELECT * FROM foto WHERE hapus = 0 AND jdlfto LIKE '%$searchText%' OR deskfto LIKE '%$searchText%'");
     foreach($fotos as $foto) :
     include '../proses/readuser.php';
     if ($result) {

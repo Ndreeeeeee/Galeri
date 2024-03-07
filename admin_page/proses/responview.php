@@ -17,7 +17,7 @@
     $query = "SELECT * FROM foto WHERE id_foto = $id_foto";
     $hasilbum = mysqli_query($koneksi, $query);
    
-    $query = "SELECT COUNT(id_like) AS tal FROM likee WHERE id_foto = $id_foto";
+    $query = "SELECT COUNT(id_like) AS tal FROM likee WHERE id_foto = $id_foto AND hapus = 0";
     $cotfto = mysqli_query($koneksi, $query);
     if($il =  mysqli_fetch_assoc($cotfto)){
         $tur = $il["tal"];

@@ -8,13 +8,13 @@ $curse = mysqli_query($koneksi, $query);
 
 $query = "SELECT *
 FROM album_foto
-INNER JOIN foto ON album_foto.id_foto = foto.id_foto WHERE foto.hapus = 0";
+INNER JOIN foto ON album_foto.id_foto = foto.id_foto WHERE album_foto.hapus = 0";
 $mut = mysqli_query($koneksi, $query);
 
 $query = "SELECT *
 FROM album_foto
 INNER JOIN foto ON album_foto.id_foto = foto.id_foto
-WHERE foto.hapus = 0
+WHERE album_foto.hapus = 0
 ORDER BY album_foto.id DESC";
 $scr = mysqli_query($koneksi, $query);
 ?>

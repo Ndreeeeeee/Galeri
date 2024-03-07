@@ -267,7 +267,7 @@ $username = $_SESSION['username'];
            <?php 
             $count = 0;
             foreach($scr as $row):
-                if($row["id_album"] == $id_album && $count < 3){
+                if($row["id_album"] == $id_album && $count < 3 && $row["hapus"] = 0){
            ?>
             <div class="tra"><img src="<?php echo $row["fto"] ?>" alt=""></div>  
             <?php

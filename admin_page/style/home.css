@@ -28,6 +28,9 @@ body{
     transition: 0.5s linear;
     backdrop-filter: blur(2px);
 }
+
+
+
 #sv{
     transform: translateY(-755px);
     position: fixed;
@@ -36,7 +39,7 @@ body{
     z-index: 4;
     transition: 0.2s linear;
 }
-.wrap_koll{
+.wrap_sv{
     border: 0px solid;
     margin: 10px auto 10px auto;
     display: flex;
@@ -44,7 +47,7 @@ body{
     justify-content: center;
     gap: 5px;
 }
-.wrap_koll .cls{
+.wrap_sv .cls{
     padding: 12px 20px;
     background: var(--blue-clr);
     font-weight: 600;
@@ -54,11 +57,11 @@ body{
     transition: 0.2s linear;
     cursor: pointer;
 }
-.wrap_koll .cls:active{
+.wrap_sv .cls:active{
     transform: scale(0.9);
 }
 
-.upper{
+.up_sv{
     background: #FFF;
     width: 540px; 
     height: fit-content;
@@ -72,15 +75,15 @@ body{
     justify-content: center;
     gap: 10px;
 }
-.upper ion-icon {
+.up_sv ion-icon {
     --ionicon-stroke-width: 55px;
 }
-.upper span{
+.up_sv span{
     margin-top: 10px;
     font-size: 1.8rem;
     color: var(--blue-clr);
 }
-.box_add{
+.box_sv{
     border: 0px solid;
     background: #FFF;   
     width: 600px;
@@ -93,15 +96,15 @@ body{
     transition: 0.1s linear;
     overflow-y: scroll;
 }
-.box_add::-webkit-scrollbar{
+.box_sv::-webkit-scrollbar{
     background: rgba(0, 0, 0, 0);
     width: 5px;
 }
-.box_add::-webkit-scrollbar-thumb{
+.box_sv::-webkit-scrollbar-thumb{
     background: var(--blue-clr);
     border-radius: 10px;
 }
-.box_add h4{
+.box_sv h4{
     margin-bottom: 10px;
     font-weight: 600;
 }
@@ -165,136 +168,6 @@ body{
     cursor: pointer;
     display: none;
     transform: translateX(0px);
-}
-
-
-
-
-.repo{
-    position: absolute;
-    transform: translate(0px, 150px);
-    border: 0px solid;
-    margin: -85px auto;
-    width: 100%;
-    height: 100%;
-    z-index: 6;
-    display: flex;
-    align-items: center;
-    backdrop-filter: blur(2px);
-    display: block;
-}
-.tas{
-    border: 0px solid;
-    width: 33%;
-    height: 80%;
-    margin: 0px auto;
-    background: #fff;
-    border-radius: 15px;
-}
-.oph{
-    border: 0px solid;
-    border-radius: 15px 15px 0px 0px; 
-    height: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 0px;
-    box-shadow: 0px 2px 2px #5555559f;
-}
-.oph span ion-icon{
-    --ionicon-stroke-width: 35px;
-    font-size: 1.8rem;
-    margin-bottom: -10px;
-    margin-right: 10px;
-    background: var(--blue-clr);
-    color: #fff;
-    padding: 5px;
-    border-radius: 7px;
-}
-.oph p{
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-.reptyp{
-    border: 0px solid;
-    margin: 10px 0px 10px 0px;
-    height: 75%;
-    overflow-y: scroll;
-}
-.reptyp::-webkit-scrollbar{
-    background: rgba(0, 0, 0, 0);
-    width: 5px;
-}
-.reptyp::-webkit-scrollbar-thumb{
-    background: var(--blue-clr);
-    border-radius: 10px;
-}
-.lapor{
-    border: 0px solid;
-    width: 93%;
-    height: fit-content;
-    margin: 10px auto;
-    padding: 10px;
-    background: #eeee;
-    border-radius: 5px;
-}
-.crew{
-    position: relative;
-    display: flex;
-    border: 0px solid;
-    padding: 0px 0px 0px 35px;
-}
-.sot{
-    border: 2px solid var(--blue-clr);
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    top: -10px;
-    left: -12px;
-    transition: 0.2s linear;
-}
-.crew p{
-    font-weight: 600;
-}
-[type="radio"]:checked + label{
-    border: 10px solid var(--blue-clr);
-}
-.dek{
-    border: 0px solid;
-    font-size: 0.7rem;
-    margin: 5px 0px 0px 35px;
-}
-.boh{
-    width: 100%;
-    border: 0px solid;
-    display: flex;
-    padding: 10px;
-    border-radius: 0px 0px 10px 10px;
-    box-shadow: 0px -2px 2px #5555559f;
-}
-.tk{
-    font-size: 1.1rem;
-    font-weight: 500;
-    border: 2px solid;
-    background: #eeee;
-    color: black;
-    padding: 3px 15px;
-    border-radius: 4px;
-    margin: 2px 0px 0px 25px;
-    cursor: pointer;
-}
-.stran{
-    position: relative;
-    font-size: 1.1rem;
-    margin-top: 2px;
-    font-weight: 500;
-    border: 2px solid black;
-    top: -9px;
-    left: 180px;
-    background: var(--blue-clr);
-    color: #fff;
-    padding: 3px 15px;
-    border-radius: 4px;
 }
 
 
@@ -404,7 +277,7 @@ body{
     padding: 5px 10px;
     background: #fff;
     border-radius: 3px;
-    transform: translate(270px, -35px);
+    transform: translate(285px, -35px);
 }
 .title .desk{
     margin-bottom: 25px;
